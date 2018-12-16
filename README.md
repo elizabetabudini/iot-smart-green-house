@@ -1,2 +1,0 @@
-# Elaborato3_SEIOT
-
