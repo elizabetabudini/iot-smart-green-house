@@ -18,6 +18,9 @@ void setup()
 
 void loop()
 {
+  //wrtie message to the app. 1 just to try
+  bluetooth.write("1");
+  //read data from the app
   while(bluetooth.available()){
     message+=char(bluetooth.read());
   }
