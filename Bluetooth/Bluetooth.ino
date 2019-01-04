@@ -6,7 +6,7 @@
 //rx e tx sono invertiti nella funzione
 int rxPin = 3;
 int txPin = 2;
-SoftwareSerial bluetooth(txPin, rxPin);
+SoftwareSerial bluetooth(rxPin, txPin);
 
 String message; //string that stores the incoming message
 
