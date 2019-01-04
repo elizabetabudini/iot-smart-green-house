@@ -1,6 +1,9 @@
 #include "Led.h"
 #include "Arduino.h"
 
+/**
+ * Class used to manage a led
+ */
 Led::Led(int pin){
   this->pin = pin;
   pinMode(pin,OUTPUT);

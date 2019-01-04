@@ -1,7 +1,11 @@
 #ifndef __TASK__
 #define __TASK__
 
+/**
+ * Class used define the structure of a task.
+ */
 class Task {
+ protected:
   int myPeriod;
   int timeElapsed;
   
@@ -13,6 +17,7 @@ public:
 
   virtual void tick() = 0;
 
+//this method will make the task work only if its internal period is elapsed.
   bool updateAndCheckTime(int basePeriod){
     timeElapsed += basePeriod;
     if (timeElapsed >= myPeriod){
@@ -21,10 +26,6 @@ public:
     } else {
       return false; 
     }
-  }
-
-  int getPeriod(){
-    return myPeriod;
   }
   
 };
