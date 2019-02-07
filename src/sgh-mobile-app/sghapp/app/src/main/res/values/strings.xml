@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">sgh-app</string>
+    <string name="app_name">Smart Green House</string>
+    <string name="switch_status_off">Bluetooth spento</string>
+    <string name="switch_status_on">Bluetooth acceso</string>
+    <string name="button_collegamento">Collegati alla serra</string>
 </resources>
