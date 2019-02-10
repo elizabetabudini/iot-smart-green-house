@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+body {
+	padding-top: 70px;
+	background-color: black;
+}
+
+.header {
+	background-color: gray;
+}
+
+.footer {
+	padding: 25px;
+}
+
+html{
+	font-family:'Source Sans Pro', sans-serif;
+}
+
+p {
+	font-size: 120%;
+	color: white;
+}
+
+.title{
+	padding-bottom:30px;
+}
+
+.teammates{
+	padding-bottom:60px;
+}
+
+@media screen and (max-width:767px){
+	.teammates{
+		text-align:center;
+	}
+}
+
+.ultimi{
+	padding-bottom:40px;
+}

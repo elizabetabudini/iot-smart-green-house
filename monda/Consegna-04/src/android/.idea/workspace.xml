@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d514855a-1373-4d58-a76e-c3c4b5d85a23" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../../Arduino-Bluetooth-Basic-master/Arduino-Bluetooth-Basic-master/LED-master/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Arduino-Bluetooth-Basic-master/Arduino-Bluetooth-Basic-master/LED-master/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Arduino-Bluetooth-Basic-master/Arduino-Bluetooth-Basic-master/LED-master/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Arduino-Bluetooth-Basic-master/Arduino-Bluetooth-Basic-master/LED-master/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Arduino-Bluetooth-Basic-master/Arduino-Bluetooth-Basic-master/LED-master/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Arduino-Bluetooth-Basic-master/Arduino-Bluetooth-Basic-master/LED-master/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Arduino-Bluetooth-Basic-master/Arduino-Bluetooth-Basic-master/LED-master/LED-master.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../ArduinoBluetooth(Source)/app/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../ArduinoBluetooth(Source)/app/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/android.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/DetectDistanceTask.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/DetectDistanceTask.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/IrrigationTask.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/IrrigationTask.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/Led.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/Led.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/LedExt.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/LedExt.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/Light.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/LightExt.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/MsgServiceBT.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/MsgServiceBT.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/Progetto3.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/ProximitySensor.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/Scheduler.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/Scheduler.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/ServoTimer2-master/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/ServoTimer2-master/ServoTimer2.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/ServoTimer2-master/ServoTimer2.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/ServoTimer2-master/ServoTimer2.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/ServoTimer2-master/examples/threeservos/ServoTimer2.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/ServoTimer2-master/examples/threeservos/ServoTimer2.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/ServoTimer2-master/examples/threeservos/threeservos.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/ServoTimer2.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/ServoTimer2.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/Sonar.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/Sonar.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/Task.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/Timer.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/Timer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/globalVars.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-controller/DetectDistanceTask.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-controller/DetectDistanceTask.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-controller/DetectDistanceTask.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-controller/DetectDistanceTask.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-controller/Led.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-controller/Led.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-controller/MaintenanceTask.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-controller/MaintenanceTask.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-controller/MakingCoffeeTask.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-controller/MakingCoffeeTask.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-controller/SleepTask.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-controller/SleepTask.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-controller/globalVars.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-controller/globalVars.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-controller/sgh-controller.ino" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-controller/sgh-controller.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/.idea/caches/gradle_models.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/.idea/render.experimental.xml" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-188748643">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="java" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/smartdoor/moduloandroid/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1768">
+              <caret line="104" column="45" selection-start-line="104" selection-start-column="45" selection-end-line="104" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="260" />
+    <option name="y" value="20" />
+    <option name="width" value="1400" />
+    <option name="height" value="1000" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="android" type="b2602c69:ProjectViewProjectNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="android" type="b2602c69:ProjectViewProjectNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../ArduinoBluetooth(Source)/app" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d514855a-1373-4d58-a76e-c3c4b5d85a23" name="Default Changelist" comment="" />
+      <created>1549813062865</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1549813062865</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="260" y="20" width="1400" height="1000" extended-state="0" />
+    <layout>
+      <window_info id="Captures" order="0" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.17474303" />
+      <window_info id="Structure" order="2" side_tool="true" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="TODO" order="1" />
+      <window_info anchor="bottom" id="Terminal" order="2" />
+      <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
+      <window_info anchor="right" id="Capture Analysis" order="0" />
+      <window_info anchor="right" id="Theme Preview" order="1" />
+      <window_info anchor="right" id="Palette&#9;" order="2" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/smartdoor/moduloandroid/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1768">
+          <caret line="104" column="45" selection-start-line="104" selection-start-column="45" selection-end-line="104" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
