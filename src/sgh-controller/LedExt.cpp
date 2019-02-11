@@ -23,6 +23,10 @@ void LedExt::setIntensity(int value){
  }
 }
 
+int LedExt::getIntensity(){
+return currentIntensity;  
+}
+
 void LedExt::switchOff(){
   analogWrite(pin,0);
   isOn = false;

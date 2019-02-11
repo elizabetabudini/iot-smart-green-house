@@ -11,7 +11,8 @@
 //define the pin of each sensor
 #define LED_1_PIN 12
 #define LED_2_PIN 11
-#define LED_3_PIN 10
+//passing pin 6 because pin 9 and 10 are used from Timer2, which is used in servo library.
+#define LED_3_PIN 6
 #define ECHO_SONAR_PIN 7
 #define TRIGGER_SONAR_PIN 8
 #define TX 2

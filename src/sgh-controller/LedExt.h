@@ -11,6 +11,7 @@ public:
   void switchOn();
   void switchOff();
   void setIntensity(int v);
+  int getIntensity();
 private:
   int currentIntensity;
   bool isOn;

@@ -6,7 +6,7 @@
 class LightExt : public Light {
 public:
   virtual void setIntensity(int) = 0;
+  virtual int getIntensity() = 0;
 };
 
 #endif
-

@@ -21,15 +21,15 @@ IrrigationTask::IrrigationTask(int pin0, int pin1, int pin2, int pinServo, int t
 //set the starting state anhd initialize the leds
 void IrrigationTask::init(int period){
   Task::init(period);
-  for (int i = 0; i < 3; i++){
+  for (int i = 0; i < 2; i++){
     led[i] = new Led(pin[i]); 
   }
+  ledMid = new LedExt(pin[2],128);  
   msgService = new MsgServiceBT(this->tx, this->rx);
   msgService->init();
   portataManuale = 1;
-  //ledMid = new LedExt(10,0);
-  //ledMid->switchOn();
-  localState1 = WAITING;  
+  localState1 = WAITING;
+  MsgService.init();
 }
   
 
@@ -62,47 +62,64 @@ void IrrigationTask::tick(){
     servo.detach();
 		led[0]->switchOn();
 		led[1]->switchOff();
-    led[2]->switchOff();
-    //ledMid->setIntensity(185);
+    ledMid->switchOff();
 		lastTime = 0;
+    if (MsgService.isMsgAvailable()) {
+      Msg* msg = MsgService.receiveMsg();    
+      if (msg->getContent() == "Start0"){
+        portataAutomatica = 10;
+        localState1 = IRRIGATION;
+      } else if (msg->getContent() == "Start1"){
+        portataAutomatica = 80;
+        localState1 = IRRIGATION;
+      } else if (msg->getContent() == "Start2"){
+        portataAutomatica = 255;
+        localState1 = IRRIGATION;
+      } 
+      delete msg;
+   }
     break;
    
 	case MANUALE:
     servo.detach();
 		led[0]->switchOff();
 		led[1]->switchOn();
-    led[2]->switchOff();
-    //ledMid->setIntensity(185);
+    ledMid->switchOff();
+
 		if (msgService->isMsgAvailable()) {
     		Msg* msg = msgService->receiveMsg();
     		if (msg->getContent() == "1"){
        			localState1 = IRRIGATION;
     		} else if (msg->getContent() == "P0"){
-            portataManuale = 0;
+            portataManuale = 10;
         } else if (msg->getContent() == "P1"){
-            portataManuale = 1;
+            portataManuale = 80;
         } else if (msg->getContent() == "P2"){
-            portataManuale = 2;
+            portataManuale = 255;
         } 	
     		delete msg;
   	}
      break;
      
-	case IRRIGATION:
-    //ledMid->switchOn();
-   
-    servo.attach(servoPin);  
-    led[2]->switchOn();
-    //ledMid->setIntensity(portata);
-		
+	case IRRIGATION:   
+    servo.attach(servoPin);  		
 		if(lastState == AUTOMATICO){
-      int portata = 180;
+      ledMid->setIntensity(portataAutomatica);    
+      MsgService.sendMsg(String(ledMid->getIntensity()));
       servo.write(1500);
 			lastTime += myPeriod;
 			if(lastTime >= IRRIGATIONTIME){
 				localState1 = WAITING;
-			}	
+			}
+      if (MsgService.isMsgAvailable()) {
+        Msg* msg = MsgService.receiveMsg();    
+        if (msg->getContent() == "Stop"){
+          localState1 = WAITING;
+        }
+        delete msg;
+      } 
 		} else if(lastState == MANUALE){
+      ledMid->setIntensity(portataManuale);
       servo.write(1500);
       //ipotizzando che l'APP invii sempre in loop dei valori.
       if (/*!msgService->isMsgAvailable() ||*/ statoDistanza == LONTANO) {
@@ -115,7 +132,8 @@ void IrrigationTask::tick(){
 	    		}		
 	    		delete msg;
 	  	}			
-		}   
+		} 
+    ledMid->switchOn(); 
     break;
   }
   

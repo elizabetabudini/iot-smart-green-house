@@ -8,12 +8,14 @@
 #include "LedExt.h"
 #include "Led.h"
 #include "ServoTimer2.h"
+#include "MsgService.h"
 
 /**
  * Class used to manage the detecting distance task
  */
 class IrrigationTask: public Task {
 
+  int portataAutomatica;
   int portataManuale; // 0-1-2 -> min, mid, max
   MsgServiceBT * msgService;
   int pin[3];

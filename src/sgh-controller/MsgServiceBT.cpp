@@ -31,12 +31,12 @@ Msg* MsgServiceBT::receiveMsg(){
     }
   }
 
-  /* if(!channel->available())
+   if(!channel->available())
   {     
       Msg* msg = new Msg(content);  
       content = "";
       return msg;    
-  } */
+  } 
   
   return NULL;  
 }
