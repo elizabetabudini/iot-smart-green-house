@@ -45,7 +45,28 @@ void IrrigationTask::tick(){
       lastState = AUTOMATICO;
   }
 
+  //Buffer cleaning. If you are in another state, and receive a message via serial or bluetooth, it will delete the message, otherwise you would receive it when they they get connected
+  if (msgService->isMsgAvailable() && (localState1 != MANUALE || localState1 == IRRIGATION && lastState != MANUALE)) {
+      Msg* msg = msgService->receiveMsg();
+      delete msg;
+  }
+
+  if (localState1 != MANUALE && !(localState1 == IRRIGATION && lastState == MANUALE)) {
+      if (msgService->isMsgAvailable()){
+        Msg* msg = msgService->receiveMsg();     
+        delete msg;
+      }
+  }
   
+  if (localState1 != AUTOMATICO && !(localState1 == IRRIGATION && lastState == AUTOMATICO)) {
+      if (MsgService.isMsgAvailable()){
+        Msg* msg = MsgService.receiveMsg();     
+        delete msg;
+      }
+  }
+  
+
+  //switch on the task state
   switch(localState1){
   case WAITING:
     //debug collegamento bluetooth
@@ -67,12 +88,15 @@ void IrrigationTask::tick(){
     if (MsgService.isMsgAvailable()) {
       Msg* msg = MsgService.receiveMsg();    
       if (msg->getContent() == "Start0"){
+        MsgService.sendMsg("Start");
         portataAutomatica = 10;
         localState1 = IRRIGATION;
       } else if (msg->getContent() == "Start1"){
+        MsgService.sendMsg("Start");
         portataAutomatica = 80;
         localState1 = IRRIGATION;
       } else if (msg->getContent() == "Start2"){
+        MsgService.sendMsg("Start");
         portataAutomatica = 255;
         localState1 = IRRIGATION;
       } 
@@ -85,10 +109,10 @@ void IrrigationTask::tick(){
 		led[0]->switchOff();
 		led[1]->switchOn();
     ledMid->switchOff();
-
 		if (msgService->isMsgAvailable()) {
     		Msg* msg = msgService->receiveMsg();
     		if (msg->getContent() == "1"){
+            MsgService.sendMsg("Start");
        			localState1 = IRRIGATION;
     		} else if (msg->getContent() == "P0"){
             portataManuale = 10;
@@ -99,21 +123,22 @@ void IrrigationTask::tick(){
         } 	
     		delete msg;
   	}
-     break;
+    break;
      
 	case IRRIGATION:   
     servo.attach(servoPin);  		
 		if(lastState == AUTOMATICO){
-      ledMid->setIntensity(portataAutomatica);    
-      MsgService.sendMsg(String(ledMid->getIntensity()));
+      ledMid->setIntensity(portataAutomatica);
       servo.write(1500);
 			lastTime += myPeriod;
 			if(lastTime >= IRRIGATIONTIME){
+        MsgService.sendMsg("Stop");
 				localState1 = WAITING;
 			}
       if (MsgService.isMsgAvailable()) {
         Msg* msg = MsgService.receiveMsg();    
         if (msg->getContent() == "Stop"){
+          MsgService.sendMsg("Stop");
           localState1 = WAITING;
         }
         delete msg;
@@ -123,11 +148,13 @@ void IrrigationTask::tick(){
       servo.write(1500);
       //ipotizzando che l'APP invii sempre in loop dei valori.
       if (/*!msgService->isMsgAvailable() ||*/ statoDistanza == LONTANO) {
+          MsgService.sendMsg("Stop");
           localState1 = WAITING;
       }
 			if (msgService->isMsgAvailable()) {
 	    		Msg* msg = msgService->receiveMsg();
 	    		if (msg->getContent() == "2"){
+              MsgService.sendMsg("Stop");
 	       			localState1 = WAITING;
 	    		}		
 	    		delete msg;
