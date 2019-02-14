@@ -38,9 +38,13 @@ void IrrigationTask::tick(){
   //setting iniziale dello stato. Solamente se non è già in stato di irrigazione
   if(statoDistanza == VICINO && localState1 != IRRIGATION){
     //controllare se è connesso o meno
+    MsgService.sendMsg("ManIn");
     localState1 = MANUALE;
     lastState = MANUALE;
   } else if(statoDistanza == LONTANO && localState1 != IRRIGATION){
+      if(lastState == MANUALE){
+        MsgService.sendMsg("ManOut");  
+      }
       localState1 = AUTOMATICO;
       lastState = AUTOMATICO;
   }
@@ -132,7 +136,7 @@ void IrrigationTask::tick(){
       servo.write(1500);
 			lastTime += myPeriod;
 			if(lastTime >= IRRIGATIONTIME){
-        MsgService.sendMsg("Stop");
+        MsgService.sendMsg("StopT");
 				localState1 = WAITING;
 			}
       if (MsgService.isMsgAvailable()) {
