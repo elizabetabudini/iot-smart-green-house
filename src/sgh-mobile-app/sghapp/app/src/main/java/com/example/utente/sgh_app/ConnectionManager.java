@@ -1,9 +1,7 @@
-package com.smartdoor.moduloandroid;
+package com.example.utente.sgh_app;
 
-import android.app.Activity;
 import android.bluetooth.BluetoothSocket;
 import android.os.Message;
-import android.util.Base64;
 import android.util.Log;
 
 import java.io.IOException;
@@ -78,11 +76,11 @@ public class ConnectionManager extends Thread implements Runnable {
                         msg.obj = result;
                         MainActivity.getHandler().sendMessage(msg);
                     } else {
-                        Log.i("ModuloAnd Run", "Ho trovato il matchup InDoorActivity");
+                        Log.i("ModuloAnd Run", "Ho trovato il matchup Gestione_Activity");
                         Message msg = new Message();
                         msg.obj = result;
                         try {
-                            InDoorActivity.getHandler().sendMessage(msg);
+                            Gestione_Activity.getHandler().sendMessage(msg);
                         } catch (NullPointerException e) {
                             try {
                                 MainActivity.getHandler().sendMessage(msg);

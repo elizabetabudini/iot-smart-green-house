@@ -1,6 +1,16 @@
 <resources>
-    <string name="app_name">Smart Green House</string>
     <string name="switch_status_off">Bluetooth spento</string>
     <string name="switch_status_on">Bluetooth acceso</string>
     <string name="button_collegamento">Collegati alla serra</string>
+
+
+    <string name="app_name">Smart Green House</string>
+    <string name="device_name_default">HC-06</string>
+    <string name="ON">Inizia irrigazione manuale</string>
+    <string name="OFF">Termina irrigazione manuale</string>
+    <string name="intensity_label_text">Puoi cambiare la portata</string>
+    <string name="intensity_value_err">Il valore della portata deve essere compreso tra 0 e 3"</string>
+    <string name="intensity_btn_text">Cambia portata</string>
+    <string name="change_intensity_ok">Ho cambiato correttamente la portata.</string>
+    <string name="change_intensity_no">Non ho cambiato correttamente la portata.</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.smartdoor.moduloandroid;
+package com.example.utente.sgh_app;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothServerSocket;
@@ -6,10 +6,6 @@ import android.bluetooth.BluetoothSocket;
 
 import java.io.IOException;
 import java.util.UUID;
-
-/**
- * Created by daniele.tentoni2 on 06/02/2018.
- */
 
 public class MasterThread extends Thread {
     private BluetoothAdapter adapter;

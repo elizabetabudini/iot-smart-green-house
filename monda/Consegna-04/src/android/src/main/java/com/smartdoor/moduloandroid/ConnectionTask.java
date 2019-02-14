@@ -45,7 +45,7 @@ public class ConnectionTask extends AsyncTask<Void, Void, Void> {
         Log.i("ModuloAnd Task", "Ho avviato il ConnectionManager.");
 
         return null;
-    }\ notification */
+    }/* notification */
         Log.i("Modulo Android", "OnPostExecute");
     }
 

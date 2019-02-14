@@ -34,6 +34,7 @@ void IrrigationTask::init(int period){
   
 
 void IrrigationTask::tick(){
+  msgService->sendMsg(Msg("@vicino@")); //debug bt
 
   //setting iniziale dello stato. Solamente se non è già in stato di irrigazione
   if(statoDistanza == VICINO && localState1 != IRRIGATION){
@@ -110,12 +111,13 @@ void IrrigationTask::tick(){
    
 	case MANUALE:
     servo.detach();
+    msgService->sendMsg(Msg("@vicino@"));
 		led[0]->switchOff();
 		led[1]->switchOn();
     ledMid->switchOff();
 		if (msgService->isMsgAvailable()) {
     		Msg* msg = msgService->receiveMsg();
-    		if (msg->getContent() == "1"){
+    		if (msg->getContent() == "connesso"){
             MsgService.sendMsg("Start");
        			localState1 = IRRIGATION;
     		} else if (msg->getContent() == "P0"){

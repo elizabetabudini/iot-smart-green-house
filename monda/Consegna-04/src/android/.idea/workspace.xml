@@ -2,66 +2,48 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d514855a-1373-4d58-a76e-c3c4b5d85a23" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../../../Arduino-Bluetooth-Basic-master/Arduino-Bluetooth-Basic-master/LED-master/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../Arduino-Bluetooth-Basic-master/Arduino-Bluetooth-Basic-master/LED-master/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../Arduino-Bluetooth-Basic-master/Arduino-Bluetooth-Basic-master/LED-master/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../Arduino-Bluetooth-Basic-master/Arduino-Bluetooth-Basic-master/LED-master/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../Arduino-Bluetooth-Basic-master/Arduino-Bluetooth-Basic-master/LED-master/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../Arduino-Bluetooth-Basic-master/Arduino-Bluetooth-Basic-master/LED-master/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../Arduino-Bluetooth-Basic-master/Arduino-Bluetooth-Basic-master/LED-master/LED-master.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../ArduinoBluetooth(Source)/app/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../ArduinoBluetooth(Source)/app/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/android.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/DetectDistanceTask.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/DetectDistanceTask.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/IrrigationTask.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/IrrigationTask.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/Led.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/Led.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/LedExt.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/LedExt.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/Light.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/LightExt.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/MsgServiceBT.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/MsgServiceBT.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/Progetto3.ino" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/ProximitySensor.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/Scheduler.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/Scheduler.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/ServoTimer2-master/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/ServoTimer2-master/ServoTimer2.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/ServoTimer2-master/ServoTimer2.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/ServoTimer2-master/ServoTimer2.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/ServoTimer2-master/examples/threeservos/ServoTimer2.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/ServoTimer2-master/examples/threeservos/ServoTimer2.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/ServoTimer2-master/examples/threeservos/threeservos.ino" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/ServoTimer2.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/ServoTimer2.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/Sonar.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/Sonar.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/Task.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/Timer.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/Timer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Progetto3/globalVars.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-controller/DetectDistanceTask.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-controller/DetectDistanceTask.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-controller/DetectDistanceTask.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-controller/DetectDistanceTask.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-controller/Led.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-controller/Led.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-controller/MaintenanceTask.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-controller/MaintenanceTask.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-controller/MakingCoffeeTask.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-controller/MakingCoffeeTask.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-controller/SleepTask.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-controller/SleepTask.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-controller/globalVars.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-controller/globalVars.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-controller/sgh-controller.ino" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-controller/sgh-controller.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartdoor/moduloandroid/ConnectionTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartdoor/moduloandroid/ConnectionTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/Door.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/Door.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/FlexiTimer2.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/FlexiTimer2.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/MsgService.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/MsgService.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/Pir.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/Pir.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/ProximitySensor.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/Scheduler.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/Scheduler.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/SerialBluetoothDoor.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/SerialBluetoothDoor.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/SerialDoor.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/SerialDoor.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/Sonar.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/Sonar.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/Task.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/TempSensor.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/TempSensor.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/Timer.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/Timer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/button.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/buttonImpl.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/buttonImpl.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/led.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/led.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/light.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/.idea/render.experimental.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/ConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/ConnectionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/ConnectionTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/ConnectionTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/Serra.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/DoorState.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/InDoorActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/Gestione_Activity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/MasterThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/MasterThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/res/layout/activity_in_door.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/res/layout/activity_gestione.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -89,17 +71,92 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-369023650">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="java" value="3" />
+          <entry key="xml" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="3" />
+          <entry key="XML" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="2" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/smartdoor/moduloandroid/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1768">
-              <caret line="104" column="45" selection-start-line="104" selection-start-column="45" selection-end-line="104" selection-end-column="45" />
+            <state relative-caret-position="34">
+              <caret line="2" selection-start-line="2" selection-end-line="17" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/smartdoor/moduloandroid/ConnectionTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="65" lean-forward="true" selection-start-line="10" selection-start-column="65" selection-end-line="10" selection-end-column="65" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/smartdoor/moduloandroid/InDoorActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-561" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/smartdoor/moduloandroid/Door.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-566" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_main.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-line="64" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/values/strings.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="35" selection-end-column="91" />
             </state>
           </provider>
         </entry>
@@ -109,11 +166,17 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="260" />
-    <option name="y" value="20" />
-    <option name="width" value="1400" />
-    <option name="height" value="1000" />
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/com/smartdoor/moduloandroid/ConnectionTask.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-7" />
+    <option name="width" value="697" />
+    <option name="height" value="735" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -121,8 +184,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -135,6 +198,73 @@
               <item name="android" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="android" type="b2602c69:ProjectViewProjectNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="android" type="b2602c69:ProjectViewProjectNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="android" type="b2602c69:ProjectViewProjectNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="android" type="b2602c69:ProjectViewProjectNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="smartdoor" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="android" type="b2602c69:ProjectViewProjectNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="smartdoor" type="462c0819:PsiDirectoryNode" />
+              <item name="moduloandroid" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="android" type="b2602c69:ProjectViewProjectNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="android" type="b2602c69:ProjectViewProjectNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+              <item name="layout" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="android" type="b2602c69:ProjectViewProjectNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+              <item name="values" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="android" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -143,7 +273,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../ArduinoBluetooth(Source)/app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -171,10 +301,11 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="260" y="20" width="1400" height="1000" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.17474303" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.27827382" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
@@ -184,6 +315,7 @@
       <window_info anchor="bottom" id="TODO" order="1" />
       <window_info anchor="bottom" id="Terminal" order="2" />
       <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
+      <window_info anchor="right" id="Preview" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info anchor="right" id="Theme Preview" order="1" />
       <window_info anchor="right" id="Palette&#9;" order="2" />
@@ -193,10 +325,44 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/smartdoor/moduloandroid/InDoorActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-561" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/smartdoor/moduloandroid/Door.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-566" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="64" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="35" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/smartdoor/moduloandroid/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1768">
-          <caret line="104" column="45" selection-start-line="104" selection-start-column="45" selection-end-line="104" selection-end-column="45" />
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="17" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/smartdoor/moduloandroid/ConnectionTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="65" lean-forward="true" selection-start-line="10" selection-start-column="65" selection-end-line="10" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

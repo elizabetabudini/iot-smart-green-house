@@ -9,11 +9,17 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/btnON"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="@string/close_btn_text"
-            android:id="@+id/close_btn" />
+            android:text="@string/ON" />
+
+        <Button
+            android:id="@+id/btnOFF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/OFF" />
 
         <TextView
             android:layout_width="match_parent"

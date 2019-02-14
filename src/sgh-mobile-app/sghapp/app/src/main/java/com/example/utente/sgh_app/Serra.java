@@ -1,27 +1,20 @@
-package com.smartdoor.moduloandroid;
+package com.example.utente.sgh_app;
 
-import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import java.util.UUID;
 
-public class Door {
+public class Serra {
 
     // Campi per l'utilizzo del bluetooth.
     // UUID: Identificatore Univoco Applicazione Bluetooth.
     private ConnectionTask task;
 
-    // Campi propri della smartdoor.
-    private static Door instance = null;
-    private DoorState state;
-    private int intensity = 0;
+    private static Serra instance = null;
+    private int portata = 0;
 
-    private Door() {
-        this.state = DoorState.DOOR_CLOSE;
-    }
-
-    public static Door getInstance() {
+    public static Serra getInstance() {
         if(instance == null) {
-            instance = new Door();
+            instance = new Serra();
         }
         return instance;
     }
@@ -37,36 +30,34 @@ public class Door {
         }
     }
 
-    //TODO: Trovare un modo di controllo.
-    public boolean open(final String name, final String password) {
+
+    public boolean spegni_pompa() {
         if(!ConnectionManager.getInstance().getStreamSet()) {
             return false;
         }
-        this.sendMessage(name + "/" + password);
+        this.sendMessage("OFF\n");
         return true;
     }
-
-    public boolean close() {
+    public boolean accendi_pompa() {
         if(!ConnectionManager.getInstance().getStreamSet()) {
             return false;
         }
-        this.sendMessage("exit");
-        this.state = DoorState.DOOR_CLOSE;
+        this.sendMessage("ON\n");
         return true;
     }
 
-    public boolean setIntensity(int value) {
+    public boolean setPortata(int value) {
         try {
             this.sendMessage(String.valueOf(value));
-            intensity = value;
+            portata = value;
         } catch (Exception e) {
             return false;
         }
         return true;
     }
 
-    public int getIntensity() {
-        return intensity;
+    public int getPortata() {
+        return portata;
     }
 
     private void sendMessage(String message) {

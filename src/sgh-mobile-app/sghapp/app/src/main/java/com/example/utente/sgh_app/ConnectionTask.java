@@ -1,4 +1,4 @@
-package com.smartdoor.moduloandroid;
+package com.example.utente.sgh_app;
 
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -41,12 +41,10 @@ public class ConnectionTask extends AsyncTask<Void, Void, Void> {
         ConnectionManager cm = ConnectionManager.getInstance();
         cm.setChannel(socket);
         cm.start();
-        cm.write("connesso".getBytes());
+        cm.write("connesso\n".getBytes());
         Log.i("ModuloAnd Task", "Ho avviato il ConnectionManager.");
 
         return null;
-    }\ notification */
-        Log.i("Modulo Android", "OnPostExecute");
     }
 
     public boolean getConnectionState() {
