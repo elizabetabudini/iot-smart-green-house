@@ -1,31 +1,31 @@
+package Progetto3;
+
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.http.HttpServerResponse;
-import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.List;
 
 /*
  * Data Service as a vertx event-loop 
  */
-public class DataService extends AbstractVerticle {
+public class DataService extends AbstractVerticle{
 
 	private int port;
-	private static final int MAX_SIZE = 10;
-	private LinkedList<DataPoint> values;
-	
-	public DataService(int port) {
-		values = new LinkedList<>();		
+	private ESP esp;
+	public DataService(int port,ESP esp) {		
 		this.port = port;
+		this.esp = esp;
 	}
 
 	@Override
@@ -44,37 +44,28 @@ public class DataService extends AbstractVerticle {
 	
 	private void handleAddNewData(RoutingContext routingContext) {
 		HttpServerResponse response = routingContext.response();
-		// log("new msg "+routingContext.getBodyAsString());
 		JsonObject res = routingContext.getBodyAsJson();
 		if (res == null) {
 			sendError(400, response);
 		} else {
-			float value = res.getFloat("value");
-			String place = res.getString("place");
-			long time = System.currentTimeMillis();
-			
-			values.addFirst(new DataPoint(value, time, place));
-			if (values.size() > MAX_SIZE) {
-				values.removeLast();
+			if(res.getInteger("umidita") != null) {
+				try {
+					save(res.getInteger("umidita").toString());
+					esp.checkMin(res.getInteger("umidita"));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+							
+				response.setStatusCode(200).end();
+			} else {
+				response.setStatusCode(400).end();
 			}
-			
-			log("New value: " + value + " from " + place + " on " + new Date(time));
-			response.setStatusCode(200).end();
 		}
 	}
 	
 	private void handleGetData(RoutingContext routingContext) {
-		JsonArray arr = new JsonArray();
-		for (DataPoint p: values) {
-			JsonObject data = new JsonObject();
-			data.put("time", p.getTime());
-			data.put("value", p.getValue());
-			data.put("place", p.getPlace());
-			arr.add(data);
-		}
 		routingContext.response()
-			.putHeader("content-type", "application/json")
-			.end(arr.encodePrettily());
+			.setStatusCode(400).end();
 	}
 	
 	private void sendError(int statusCode, HttpServerResponse response) {
@@ -85,9 +76,9 @@ public class DataService extends AbstractVerticle {
 		System.out.println("[DATA SERVICE] "+msg);
 	}
 
-	public static void main(String[] args) {
-		Vertx vertx = Vertx.vertx();
-		DataService service = new DataService(8080);
-		vertx.deployVerticle(service);
+	private void save(String msg) throws IOException {
+		final BufferedWriter bw = new BufferedWriter(new FileWriter(new File("umid.txt"), true));
+        bw.append(msg + "\n");
+        bw.close();
 	}
 }
