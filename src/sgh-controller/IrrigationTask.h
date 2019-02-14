@@ -26,6 +26,7 @@ class IrrigationTask: public Task {
   LightExt* ledMid;
   ServoTimer2 servo;
   int lastTime;
+  int lastTimeMsgBluetooth;
   enum localState{WAITING, AUTOMATICO, MANUALE, IRRIGATION};
   localState localState1;
   localState lastState;
