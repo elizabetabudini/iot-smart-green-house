@@ -1,3 +1,4 @@
+package Progetto3;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpClient;
@@ -7,7 +8,7 @@ public class TestClient extends AbstractVerticle {
 	
 	public static void main(String[] args) {		
 	
-		String host = "29f90c34.ngrok.io";
+		String host = "e7f504a1.ngrok.io";
 		int port = 80;
 
 		Vertx vertx = Vertx.vertx();
