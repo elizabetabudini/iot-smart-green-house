@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                     if(!btAdapter.isEnabled()){
                         showToast("Accendo il bluetooth");
                         //intent che accende
+                        btn_assoc.setEnabled(true);
                         Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                         startActivityForResult(intent, REQUEST_ENABLE_BT);
                     } else {
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
                     if(btAdapter.isEnabled()){
                         btAdapter.disable();
                         showToast("Bluetooth spento");
+                        btn_assoc.setEnabled(false);
                         iv_iconBT.setImageResource(R.drawable.ic_action_off);
                         switch_bluetooth.setText(R.string.switch_status_off);
                     } else {
@@ -83,14 +85,7 @@ public class MainActivity extends AppCompatActivity {
         final BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
         if (adapter == null) {
             finish();
-        } else {
-            // Abilito il bluetooth.
-            if (!adapter.isEnabled()) {
-                Intent i = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                startActivityForResult(i, REQUEST_ENABLE_BT);
-            }
         }
-
 
         btn_assoc = findViewById(R.id.assoc_btn);
         btn_assoc.setEnabled(true);
@@ -115,12 +110,15 @@ public class MainActivity extends AppCompatActivity {
                     if (Serra.getInstance().setConnection(device, APP_UUID)) {
                         // Settata la connessione
                         showToast("Connesso");
-                        btn_assoc.setEnabled(false);
-                        showToast("Attesa risposta connessione.");
+                        Serra.getInstance().connetti();
+                        Intent i = new Intent(getApplicationContext(), Gestione_Activity.class);
+                        startActivity(i);
+
                     } else {
                         showToast("Impossibile connettersi");
                     }
                 }
+
 
             }
         });

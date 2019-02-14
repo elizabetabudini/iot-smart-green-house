@@ -10,15 +10,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
+import java.util.Timer;
 
 public class Gestione_Activity extends AppCompatActivity {
-    TextView logView;
-    //EditText intensity_t;
-    TextView intensity_l;
 
-    private static InDoorActivityHandler uiHandler;
+    TextView intensity_l;
+    Button btn_ON, btn_OFF;
+
+    private static gestioneActivityHandler uiHandler;
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -33,15 +35,7 @@ public class Gestione_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gestione);
         intensity_l = findViewById(R.id.intensity_label);
-        uiHandler = new InDoorActivityHandler(this);
-
-        Button btn_close = findViewById(R.id.btnOFF);
-        btn_close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Serra.getInstance().spegni_pompa();
-            }
-        });
+        uiHandler = new gestioneActivityHandler(this);
 
         final SeekBar bar = findViewById(R.id.seekBar);
         bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -57,22 +51,26 @@ public class Gestione_Activity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 int intensity_v = bar.getProgress();
-                if(intensity_v < 0 || intensity_v > 3) {
-                    logView.setText(R.string.intensity_value_err);
+
+                if(Serra.getInstance().setPortata(intensity_v)) {
+                    // Ho cambiato l'intensità
+                    intensity_l.setText(getString(R.string.intensity_label_text) + ": " + intensity_v);
+                    //intensity_t.setText(intensity_v);
                 } else {
-                    if(Serra.getInstance().setPortata(intensity_v)) {
-                        // Ho cambiato l'intensità.
-                        logView.setText(R.string.change_intensity_ok);
-                        intensity_l.setText(getString(R.string.intensity_label_text) + ": " + intensity_v);
-                        //intensity_t.setText(intensity_v);
-                    } else {
-                        // Non ho cambiato l'intensità.
-                        Log.e("ModuloAnd InDoor Bar", "No value change.");
-                    }
+                    // Non ho cambiato l'intensità.
+                    Log.e("ModuloAnd", "No value change.");
                 }
+
             }
         });
 
+    }
+
+    public void start(View v){
+        Serra.getInstance().accendi_pompa();
+    }
+    public void end(View v){
+        Serra.getInstance().spegni_pompa();
     }
 
     public void onStart() {
@@ -87,14 +85,14 @@ public class Gestione_Activity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    public static InDoorActivityHandler getHandler() {
+    public static gestioneActivityHandler getHandler() {
         return uiHandler;
     }
 
-    public static class InDoorActivityHandler extends Handler {
+    public static class gestioneActivityHandler extends Handler {
         private WeakReference<Gestione_Activity> context;
 
-        private InDoorActivityHandler(Gestione_Activity context) {
+        private gestioneActivityHandler(Gestione_Activity context) {
             this.context = new WeakReference<>(context);
         }
 
@@ -103,9 +101,8 @@ public class Gestione_Activity extends AppCompatActivity {
             if(obj instanceof String) {
                 String message = obj.toString();
                 switch(message) {
-                    //se clicca il bottone arduino
                     case "exit":
-                        Log.w("ModuloAnd Handle InDoor", "Sono dentro a exit.");
+                        Log.w("ModuloAnd", "Sono dentro a exit.");
                         context.get().setResult(RESULT_OK);
                         context.get().finish();
                         break;
@@ -114,5 +111,12 @@ public class Gestione_Activity extends AppCompatActivity {
         }
 
     }
+    //toast message function
+    private void showToast(String msg){
+        Toast.makeText(getBaseContext(), msg, Toast.LENGTH_SHORT ).show();
+
+    }
 }
+
+
 

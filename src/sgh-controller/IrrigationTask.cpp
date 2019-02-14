@@ -36,7 +36,6 @@ void IrrigationTask::init(int period){
   
 
 void IrrigationTask::tick(){
-  msgService->sendMsg(Msg("@vicino@")); //debug bt
 
   //setting iniziale dello stato. Solamente se non è già in stato di irrigazione
   if(statoDistanza == VICINO && localState1 != IRRIGATION && msgService->isMsgAvailable()){
@@ -100,12 +99,12 @@ void IrrigationTask::tick(){
     servo.detach();
     break;
    
-	case AUTOMATICO:
+  case AUTOMATICO:
     servo.detach();
-		led[0]->switchOn();
-		led[1]->switchOff();
+    led[0]->switchOn();
+    led[1]->switchOff();
     ledMid->switchOff();
-		lastTime = 0;
+    lastTime = 0;
     if (MsgService.isMsgAvailable()) {
       Msg* msg = MsgService.receiveMsg();    
       if (msg->getContent() == "Start0"){
@@ -125,12 +124,11 @@ void IrrigationTask::tick(){
    }
     break;
    
-	case MANUALE:
+  case MANUALE:
     MsgService.sendMsg("Semo in manuale ahaha");
     servo.detach();
-    msgService->sendMsg(Msg("@vicino@"));
-		led[0]->switchOff();
-		led[1]->switchOn();
+    led[0]->switchOff();
+    led[1]->switchOn();
     ledMid->switchOff();
     if (msgService->isMsgAvailable() <= 0){
        MsgService.sendMsg("Non disponibile skere");
@@ -139,36 +137,38 @@ void IrrigationTask::tick(){
             localState1 = WAITING;
         }
      }
-		if (msgService->isMsgAvailable() > 0) {
+    if (msgService->isMsgAvailable() > 0) {
     lastTimeMsgBluetooth = 0;
-    		Msg* msg = msgService->receiveMsg();
-    		if (msg->getContent() == "connesso"){
+        Msg* msg = msgService->receiveMsg();
         MsgService.sendMsg("DISPNIBILISSIMO AHAHA");
         MsgService.sendMsg("Non disponibile skere");
-    		if (msg->getContent() == "1"){
+        if (msg->getContent() == "1"){
             MsgService.sendMsg("Start");
-       			localState1 = IRRIGATION;
-    		} else if (msg->getContent() == "3"){
+            localState1 = IRRIGATION;
+        } else if (msg->getContent() == "3"){
+          MsgService.sendMsg("portata 3");
             portataManuale = 10;
         } else if (msg->getContent() == "4"){
+          MsgService.sendMsg("portata 4");
             portataManuale = 80;
         } else if (msg->getContent() == "5"){
+          MsgService.sendMsg("portata 5");
             portataManuale = 255;
-        } 	
-    		delete msg;
-  	}
+        }   
+        delete msg;
+    }
     break;
      
-	case IRRIGATION:   
-    servo.attach(servoPin);  		
-		if(lastState == AUTOMATICO){
+  case IRRIGATION:   
+    servo.attach(servoPin);     
+    if(lastState == AUTOMATICO){
       ledMid->setIntensity(portataAutomatica);
       servo.write(1500);
-			lastTime += myPeriod;
-			if(lastTime >= IRRIGATIONTIME){
+      lastTime += myPeriod;
+      if(lastTime >= IRRIGATIONTIME){
         MsgService.sendMsg("StopT");
-				localState1 = WAITING;
-			}
+        localState1 = WAITING;
+      }
       if (MsgService.isMsgAvailable()) {
         Msg* msg = MsgService.receiveMsg();    
         if (msg->getContent() == "Stop"){
@@ -177,7 +177,7 @@ void IrrigationTask::tick(){
         }
         delete msg;
       } 
-		} else if(lastState == MANUALE){   
+    } else if(lastState == MANUALE){   
       ledMid->setIntensity(portataManuale);
       servo.write(1500);
       //ipotizzando che l'APP invii sempre in loop dei valori.
@@ -192,16 +192,16 @@ void IrrigationTask::tick(){
               localState1 = WAITING;
           }
        }
-			if (msgService->isMsgAvailable()) {
+      if (msgService->isMsgAvailable()) {
       lastTimeMsgBluetooth = 0;
-	    		Msg* msg = msgService->receiveMsg();
-	    		if (msg->getContent() == "2"){
+          Msg* msg = msgService->receiveMsg();
+          if (msg->getContent() == "2"){
               MsgService.sendMsg("Stop");
-	       			localState1 = WAITING;
-	    		}		
-	    		delete msg;
-	  	}			
-		} 
+              localState1 = WAITING;
+          }   
+          delete msg;
+      }     
+    } 
     ledMid->switchOn(); 
     break;
   }
