@@ -44,14 +44,15 @@ void IrrigationTask::tick(){
      MsgService.sendMsg(msg->getContent());
      delete msg;
      */
-     
+     MsgService.sendMsg("RISULTA ANCORA DISPONIBILòE IUN MSG DIO LUPO");
     //controllare se è connesso o meno
     if(lastState != MANUALE){
       MsgService.sendMsg("ManIn");
     }
     localState1 = MANUALE;
     lastState = MANUALE;
-  } else if(statoDistanza == LONTANO && localState1 != IRRIGATION){
+    lastTimeMsgBluetooth = 0;
+  } else if((statoDistanza == LONTANO || lastTimeMsgBluetooth >= BLUETOOTHTIME )&& localState1 != IRRIGATION){
       if(lastState == MANUALE){
         MsgService.sendMsg("ManOut");  
       }
@@ -60,16 +61,11 @@ void IrrigationTask::tick(){
   }
 
   //Buffer cleaning. If you are in another state, and receive a message via serial or bluetooth, it will delete the message, otherwise you would receive it when they they get connected
-  /*
-  if (msgService->isMsgAvailable() && (localState1 != MANUALE || localState1 == IRRIGATION && lastState != MANUALE)) {
-      Msg* msg = msgService->receiveMsg();
-      delete msg;
-  }
-  */
+
 
   if (localState1 != MANUALE && !(localState1 == IRRIGATION && lastState == MANUALE)) {
       if (msgService->isMsgAvailable()){
-        MsgService.sendMsg("meesaagio cancellato no problema");
+        //MsgService.sendMsg("meesaagio cancellato no problema");
         Msg* msg = msgService->receiveMsg();     
         delete msg;
       }
@@ -87,6 +83,7 @@ void IrrigationTask::tick(){
   switch(localState1){
   case WAITING:
   lastTimeMsgBluetooth = 0;
+  ledMid->switchOff();
   /*
     //debug collegamento bluetooth
     if (msgService->isMsgAvailable()) {
@@ -125,13 +122,13 @@ void IrrigationTask::tick(){
     break;
    
   case MANUALE:
-    MsgService.sendMsg("Semo in manuale ahaha");
+    //MsgService.sendMsg("Semo in manuale ahaha");
     servo.detach();
     led[0]->switchOff();
     led[1]->switchOn();
     ledMid->switchOff();
     if (msgService->isMsgAvailable() <= 0){
-       MsgService.sendMsg("Non disponibile skere");
+       //MsgService.sendMsg("Non disponibile skere");
         lastTimeMsgBluetooth += myPeriod;
         if(lastTimeMsgBluetooth >= BLUETOOTHTIME){
             localState1 = WAITING;
@@ -140,8 +137,8 @@ void IrrigationTask::tick(){
     if (msgService->isMsgAvailable() > 0) {
     lastTimeMsgBluetooth = 0;
         Msg* msg = msgService->receiveMsg();
-        MsgService.sendMsg("DISPNIBILISSIMO AHAHA");
-        MsgService.sendMsg("Non disponibile skere");
+        //MsgService.sendMsg("DISPNIBILISSIMO AHAHA");
+        //MsgService.sendMsg("Non disponibile skere");
         if (msg->getContent() == "1"){
             MsgService.sendMsg("Start");
             localState1 = IRRIGATION;
@@ -185,14 +182,14 @@ void IrrigationTask::tick(){
           MsgService.sendMsg("Stop");
           localState1 = WAITING;
       }
-       if (!msgService->isMsgAvailable()){
+       if (msgService->isMsgAvailable() <= 0){
           lastTimeMsgBluetooth += myPeriod;
           if(lastTimeMsgBluetooth >= BLUETOOTHTIME){
-              MsgService.sendMsg("Stop");
+              MsgService.sendMsg("Stop because off skeletoin");
               localState1 = WAITING;
           }
        }
-      if (msgService->isMsgAvailable()) {
+      if (msgService->isMsgAvailable() > 0) {
       lastTimeMsgBluetooth = 0;
           Msg* msg = msgService->receiveMsg();
           if (msg->getContent() == "2"){

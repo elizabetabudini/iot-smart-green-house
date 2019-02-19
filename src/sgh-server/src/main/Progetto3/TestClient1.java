@@ -4,7 +4,7 @@ import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpClient;
 import io.vertx.core.json.JsonObject;
 
-public class TestClient extends AbstractVerticle {
+public class TestClient1 extends AbstractVerticle {
 	
 	public static void main(String[] args) {		
 	
@@ -13,7 +13,7 @@ public class TestClient extends AbstractVerticle {
 
 		Vertx vertx = Vertx.vertx();
 		HttpClient client = vertx.createHttpClient();
-		int u = 25;
+		int u = 40;
 		JsonObject item = new JsonObject().put("umidita", u);
 		
 		client.post(port, host, "/api/data", response -> {
