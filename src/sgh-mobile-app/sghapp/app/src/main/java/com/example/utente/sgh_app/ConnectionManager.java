@@ -66,11 +66,7 @@ public class ConnectionManager extends Thread implements Runnable {
                     } while (d != '@');
                     Log.i("ModuloAnd Run", "Ho finito di leggere, adesso switcho: " + buffer + ".");
                     String result = buffer.toString();
-                    if(result.trim().equals("pres") ||
-                            result.trim().equals("logok") ||
-                            result.trim().equals("logno") ||
-                            result.trim().equals("visto") ||
-                            result.trim().equals("ack")) {
+                    if(result.trim().equals("MainIn")) {
                         Log.i("ModuloAnd Run", "Ho trovato il matchup MainActivity");
                         Message msg = new Message();
                         msg.obj = result;

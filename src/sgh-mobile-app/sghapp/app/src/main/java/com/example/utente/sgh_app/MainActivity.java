@@ -105,11 +105,10 @@ public class MainActivity extends AppCompatActivity {
                     showToast("Non è stato trovato nessun dispositivo associato con questo nome.");
 
                 } else {
-                    btn_assoc.setEnabled(false);
                     // Dico alla porta di creare una connessione.
                     if (Serra.getInstance().setConnection(device, APP_UUID)) {
                         // Settata la connessione
-                        showToast("Connesso");
+                        showToast("Attendo risposta dalla serra");
                         Serra.getInstance().connetti();
                         Intent i = new Intent(getApplicationContext(), Gestione_Activity.class);
                         startActivity(i);
@@ -190,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
             if (obj instanceof String) {
                 String message = obj.toString();
                 switch (message) {
-                    case "vicino":
+                    case "ManIn":
                         Intent i = new Intent(context.get(), Gestione_Activity.class);
                         context.get().startActivityForResult(i, context.get().REQUEST_CONNECT_SERRA);
                         break;

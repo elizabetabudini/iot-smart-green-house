@@ -47,15 +47,19 @@ void IrrigationTask::tick(){
      MsgService.sendMsg("RISULTA ANCORA DISPONIBILòE IUN MSG DIO LUPO");
     //controllare se è connesso o meno
     if(lastState != MANUALE){
-      MsgService.sendMsg("ManIn");
+      //MsgService.sendMsg("ManIn");
     }
+    
+    msgService->sendMsg(Msg("@ManIn@"));
     localState1 = MANUALE;
     lastState = MANUALE;
     lastTimeMsgBluetooth = 0;
   } else if((statoDistanza == LONTANO || lastTimeMsgBluetooth >= BLUETOOTHTIME )&& localState1 != IRRIGATION){
       if(lastState == MANUALE){
-        MsgService.sendMsg("ManOut");  
+        //MsgService.sendMsg("ManOut");  
       }
+      
+      msgService->sendMsg(Msg("@ManOut@"));
       localState1 = AUTOMATICO;
       lastState = AUTOMATICO;
   }
@@ -105,7 +109,7 @@ void IrrigationTask::tick(){
     if (MsgService.isMsgAvailable()) {
       Msg* msg = MsgService.receiveMsg();    
       if (msg->getContent() == "Start0"){
-        MsgService.sendMsg("Start");
+        MsgService.sendMsg("StartAUTO");
         portataAutomatica = 10;
         localState1 = IRRIGATION;
       } else if (msg->getContent() == "Start1"){
@@ -122,7 +126,6 @@ void IrrigationTask::tick(){
     break;
    
   case MANUALE:
-    //MsgService.sendMsg("Semo in manuale ahaha");
     servo.detach();
     led[0]->switchOff();
     led[1]->switchOn();
@@ -139,7 +142,7 @@ void IrrigationTask::tick(){
         Msg* msg = msgService->receiveMsg();
         //MsgService.sendMsg("DISPNIBILISSIMO AHAHA");
         //MsgService.sendMsg("Non disponibile skere");
-        if (msg->getContent() == "1"){
+        if (msg->getContent() == "Accendi"){
             MsgService.sendMsg("Start");
             localState1 = IRRIGATION;
         } else if (msg->getContent() == "3"){
@@ -179,21 +182,21 @@ void IrrigationTask::tick(){
       servo.write(1500);
       //ipotizzando che l'APP invii sempre in loop dei valori.
       if (statoDistanza == LONTANO) {
-          MsgService.sendMsg("Stop");
+          MsgService.sendMsg("Stop perchè lontano");
           localState1 = WAITING;
       }
        if (msgService->isMsgAvailable() <= 0){
           lastTimeMsgBluetooth += myPeriod;
           if(lastTimeMsgBluetooth >= BLUETOOTHTIME){
-              MsgService.sendMsg("Stop because off skeletoin");
+              MsgService.sendMsg("Stop perchè disconnesso");
               localState1 = WAITING;
           }
        }
       if (msgService->isMsgAvailable() > 0) {
       lastTimeMsgBluetooth = 0;
           Msg* msg = msgService->receiveMsg();
-          if (msg->getContent() == "2"){
-              MsgService.sendMsg("Stop");
+          if (msg->getContent() == "Spegni"){
+              MsgService.sendMsg("Stop per messaggio ricevuto");
               localState1 = WAITING;
           }   
           delete msg;

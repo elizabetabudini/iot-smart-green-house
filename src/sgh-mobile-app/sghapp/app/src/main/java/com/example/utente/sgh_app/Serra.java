@@ -35,19 +35,21 @@ public class Serra {
         if(!ConnectionManager.getInstance().getStreamSet()) {
             return false;
         }
-        this.sendMessage("2");
+        this.sendMessage("Spegni");
         return true;
     }
     public boolean accendi_pompa() {
         if(!ConnectionManager.getInstance().getStreamSet()) {
             return false;
         }
-        this.sendMessage("1");
+        this.sendMessage("Accendi");
         return true;
     }
     public void connetti(){
-
-        this.sendMessage("connetti\n");
+        try {
+            this.sendMessage(String.valueOf(1));
+        } catch (Exception e) {
+        }
     }
 
     public boolean setPortata(int value) {

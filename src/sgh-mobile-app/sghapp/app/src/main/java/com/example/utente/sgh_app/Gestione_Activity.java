@@ -36,6 +36,21 @@ public class Gestione_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_gestione);
         intensity_l = findViewById(R.id.intensity_label);
         uiHandler = new gestioneActivityHandler(this);
+        btn_ON = findViewById(R.id.btnON);
+        btn_OFF = findViewById(R.id.btnON);
+        btn_ON.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Serra.getInstance().accendi_pompa();
+            }
+        });
+        btn_OFF.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Serra.getInstance().spegni_pompa();
+            }
+        });
+
 
         final SeekBar bar = findViewById(R.id.seekBar);
         bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -63,6 +78,8 @@ public class Gestione_Activity extends AppCompatActivity {
 
             }
         });
+
+        new ConnectedNotify().execute();
 
     }
 
@@ -101,7 +118,7 @@ public class Gestione_Activity extends AppCompatActivity {
             if(obj instanceof String) {
                 String message = obj.toString();
                 switch(message) {
-                    case "exit":
+                    case "ManOut":
                         Log.w("ModuloAnd", "Sono dentro a exit.");
                         context.get().setResult(RESULT_OK);
                         context.get().finish();
