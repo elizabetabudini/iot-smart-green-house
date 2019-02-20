@@ -38,14 +38,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initUI() {
-        findViewById(R.id.sendBtn).setEnabled(false);
         seekBar= findViewById(R.id.seekBar);
-        findViewById(R.id.btn_OFF).setEnabled(false);
         findViewById(R.id.connectBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
                     connectToBTServer();
+                    //new notify().execute();
+
                 } catch (BluetoothDeviceNotFound bluetoothDeviceNotFound) {
                     bluetoothDeviceNotFound.printStackTrace();
                 }
@@ -56,26 +56,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 btChannel.sendMessage("2");
-                findViewById(R.id.btn_ON).setEnabled(true);
             }
         });
 
         findViewById(R.id.btn_ON).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                findViewById(R.id.btn_OFF).setEnabled(true);
                 btChannel.sendMessage("1");
             }
         });
 
-        findViewById(R.id.sendBtn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int portata = seekBar.getProgress()+2;
-                String message = String.valueOf(portata);
-                btChannel.sendMessage(message);
-            }
-        });
+
 
         seekBar = findViewById(R.id.seekBar);
 
@@ -90,7 +81,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                findViewById(R.id.sendBtn).setEnabled(true);
+                int portata = seekBar.getProgress()+3;
+                String message = String.valueOf(portata);
+                btChannel.sendMessage(message);
             }
         });
     }
@@ -98,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-
+        //new notify().cancel(true);
         btChannel.close();
     }
 
@@ -110,6 +103,18 @@ public class MainActivity extends AppCompatActivity {
 
         if(requestCode == C.bluetooth.ENABLE_BT_REQUEST && resultCode == RESULT_CANCELED){
             Log.d(C.APP_LOG_TAG, "Bluetooth not enabled!");
+        }
+    }
+    private class notify extends AsyncTask<Void, Void, Void> {
+        protected Void doInBackground(Void... voids) {
+            while (!isCancelled()) {
+                btChannel.sendMessage("6");
+            }
+            return null;
+        }
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
         }
     }
 
@@ -125,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
                         serverDevice.getName()));
 
                 findViewById(R.id.connectBtn).setEnabled(false);
-
                 btChannel = channel;
                 btChannel.registerListener(new RealBluetoothChannel.Listener() {
                     @Override
@@ -150,5 +154,7 @@ public class MainActivity extends AppCompatActivity {
                         C.bluetooth.BT_DEVICE_ACTING_AS_SERVER_NAME));
             }
         }).execute();
+
+
     }
 }
