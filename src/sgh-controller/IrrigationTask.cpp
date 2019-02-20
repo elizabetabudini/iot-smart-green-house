@@ -89,7 +89,7 @@ void IrrigationTask::tick(){
     if (MsgService.isMsgAvailable()) {
       Msg* msg = MsgService.receiveMsg();    
       if (msg->getContent() == "Start0"){
-        MsgService.sendMsg("StartAUTO");
+        MsgService.sendMsg("Start");
         portataAutomatica = 10;
         localState1 = IRRIGATION;
       } else if (msg->getContent() == "Start1"){
@@ -121,17 +121,17 @@ void IrrigationTask::tick(){
     if (msgService->isMsgAvailable() > 0) {
         lastTimeMsgBluetooth = 0;
         Msg* msg = msgService->receiveMsg();
-        if (msg->getContent() == "Accendi"){
+        if (msg->getContent() == "1"){
             MsgService.sendMsg("Start");
             localState1 = IRRIGATION;
         } else if (msg->getContent() == "3"){
-            MsgService.sendMsg("portata 3");
+            //MsgService.sendMsg("portata 3");
             portataManuale = 10;
         } else if (msg->getContent() == "4"){
-            MsgService.sendMsg("portata 4");
+            //MsgService.sendMsg("portata 4");
             portataManuale = 80;
         } else if (msg->getContent() == "5"){
-          MsgService.sendMsg("portata 5");
+            //MsgService.sendMsg("portata 5");
             portataManuale = 255;
         }   
         delete msg;
@@ -164,13 +164,14 @@ void IrrigationTask::tick(){
       servo.write(1500);
       //if the person is too far while irrigating, goes back to automatic.
       if (statoDistanza == LONTANO) {
+          MsgService.sendMsg("Stop");
           localState1 = WAITING;
       }
        //if no message is available for more than 5s, we suppose bluetooth it's not connected anymore.
        if (msgService->isMsgAvailable() <= 0){
           lastTimeMsgBluetooth += myPeriod;
           if(lastTimeMsgBluetooth >= BLUETOOTHTIME){
-              MsgService.sendMsg("Stop perchè disconnesso");
+              MsgService.sendMsg("Stop");
               localState1 = WAITING;
           }
        }
@@ -178,8 +179,8 @@ void IrrigationTask::tick(){
       if (msgService->isMsgAvailable() > 0) {
       lastTimeMsgBluetooth = 0;
           Msg* msg = msgService->receiveMsg();
-          if (msg->getContent() == "Spegni"){
-              MsgService.sendMsg("Stop per messaggio ricevuto");
+          if (msg->getContent() == "2"){
+              MsgService.sendMsg("Stop");
               localState1 = WAITING;
           }   
           delete msg;
