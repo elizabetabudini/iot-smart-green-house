@@ -11,7 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
@@ -30,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
     Button btn_assoc;
     ImageView iv_iconBT;
     Switch switch_bluetooth;
+    TextView intensity_l, log;
+    Button btn_ON, btn_OFF;
+    SeekBar seekBar;
+    ConnectedNotify task;
 
     // UUID: Identificatore Univoco Applicazione Bluetooth Con Arduino
     private static final String APP_UUID = "00001101-0000-1000-8000-00805F9B34FB";
@@ -41,6 +47,39 @@ public class MainActivity extends AppCompatActivity {
         iv_iconBT = findViewById(R.id.imageBluetooth);
         switch_bluetooth= findViewById(R.id.switchBluetooth);
         uiHandler = new MainActivityHandler(this);
+        switch_bluetooth= findViewById(R.id.switchBluetooth);
+        intensity_l = findViewById(R.id.intensisty_1);
+        log = findViewById(R.id.log);
+        seekBar = findViewById(R.id.seekBar);
+        btn_OFF =findViewById(R.id.btnOFF);
+        btn_ON =findViewById(R.id.btnON);
+        uiHandler = new MainActivityHandler(this);
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                intensity_l.setText(getString(R.string.intensity_label_text) + ": " + seekBar.getProgress());
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                int intensity_v = seekBar.getProgress();
+
+                if(Serra.getInstance().setPortata(intensity_v)) {
+                    // Ho cambiato l'intensità
+                    intensity_l.setText(getString(R.string.intensity_label_text) + ": " + intensity_v);
+                    //intensity_t.setText(intensity_v);
+                } else {
+                    // Non ho cambiato l'intensità.
+                    Log.e("ModuloAnd", "No value change.");
+                }
+
+            }
+        });
 
         //set image bluetooth
         if(btAdapter.isEnabled()){
@@ -86,6 +125,25 @@ public class MainActivity extends AppCompatActivity {
         if (adapter == null) {
             finish();
         }
+
+        btn_ON.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Serra.getInstance().accendi_pompa();
+                btn_ON.setEnabled(false);
+                btn_OFF.setEnabled(true);
+            }
+        });
+        btn_OFF.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Serra.getInstance().spegni_pompa();
+                btn_OFF.setEnabled(false);
+                btn_ON.setEnabled(true);
+            }
+        });
+
+
 
         btn_assoc = findViewById(R.id.assoc_btn);
         btn_assoc.setEnabled(true);
@@ -186,8 +244,8 @@ public class MainActivity extends AppCompatActivity {
                 String message = obj.toString();
                 switch (message) {
                     case "ManIn":
-                        Intent i = new Intent(context.get(), Gestione_Activity.class);
-                        context.get().startActivityForResult(i, context.get().REQUEST_CONNECT_SERRA);
+                        //Intent i = new Intent(context.get(), Gestione_Activity.class);
+                        //context.get().startActivityForResult(i, context.get().REQUEST_CONNECT_SERRA);
                         break;
                     default:
                         break;

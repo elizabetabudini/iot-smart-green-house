@@ -52,6 +52,7 @@ public class Serra {
         }
     }
 
+
     public boolean setPortata(int value) {
         try {
             this.sendMessage(String.valueOf(value+2));

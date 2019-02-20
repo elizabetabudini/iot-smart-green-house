@@ -37,13 +37,7 @@ void IrrigationTask::init(int period){
 
 void IrrigationTask::tick(){
    /*debug android */
-   
-  if(msgService->isMsgAvailable()> 0){
-     Msg* msg = msgService->receiveMsg();
-        if (msg->getContent() == "6"){
-          Serial.println("LOOP RICEVUTO");
-        }
-  }
+
    /*   */   
         
       

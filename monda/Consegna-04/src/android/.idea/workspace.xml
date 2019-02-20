@@ -2,13 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d514855a-1373-4d58-a76e-c3c4b5d85a23" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../src/sgh-controller/IrrigationTask.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-controller/IrrigationTask.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/ConnectedNotify.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/ConnectedNotify.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/ConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/ConnectionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/ConnectionTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/ConnectionTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/Gestione_Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/Gestione_Activity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/Gestione_Activity.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/Serra.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/java/com/example/utente/sgh_app/Serra.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/res/layout/activity_gestione.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../src/sgh-mobile-app/sghapp/app/src/main/res/layout/activity_main.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -117,8 +120,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/smartdoor/moduloandroid/InDoorActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-816">
-              <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+            <state relative-caret-position="-1479">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -373,8 +378,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/smartdoor/moduloandroid/InDoorActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-816">
-          <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+        <state relative-caret-position="-1479">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
