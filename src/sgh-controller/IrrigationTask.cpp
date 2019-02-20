@@ -36,6 +36,17 @@ void IrrigationTask::init(int period){
   
 
 void IrrigationTask::tick(){
+   /*debug android */
+   
+  if(msgService->isMsgAvailable()> 0){
+     Msg* msg = msgService->receiveMsg();
+        if (msg->getContent() == "6"){
+          Serial.println("LOOP RICEVUTO");
+        }
+  }
+   /*   */   
+        
+      
 
   //setting iniziale dello stato. Solamente se non è già in stato di irrigazione
   if(statoDistanza == VICINO && localState1 != IRRIGATION && msgService->isMsgAvailable()){
@@ -112,6 +123,7 @@ void IrrigationTask::tick(){
     ledMid->switchOff();
     //if no message is available for more than 5s, we suppose bluetooth it's not connected anymore.
     if (msgService->isMsgAvailable() <= 0){
+
         lastTimeMsgBluetooth += myPeriod;
         if(lastTimeMsgBluetooth >= BLUETOOTHTIME){
             localState1 = WAITING;

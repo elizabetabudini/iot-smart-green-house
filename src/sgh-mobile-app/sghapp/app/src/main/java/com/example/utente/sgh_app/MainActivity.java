@@ -109,10 +109,6 @@ public class MainActivity extends AppCompatActivity {
                     if (Serra.getInstance().setConnection(device, APP_UUID)) {
                         // Settata la connessione
                         showToast("Attendo risposta dalla serra");
-                        Serra.getInstance().connetti();
-                        Intent i = new Intent(getApplicationContext(), Gestione_Activity.class);
-                        startActivity(i);
-
                     } else {
                         showToast("Impossibile connettersi");
                     }

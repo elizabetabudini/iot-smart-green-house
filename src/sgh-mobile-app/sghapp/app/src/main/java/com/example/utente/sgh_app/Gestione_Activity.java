@@ -79,7 +79,7 @@ public class Gestione_Activity extends AppCompatActivity {
             }
         });
 
-        new ConnectedNotify().execute();
+        new ConnectedNotify(this).execute();
 
     }
 
@@ -120,7 +120,6 @@ public class Gestione_Activity extends AppCompatActivity {
                 switch(message) {
                     case "ManOut":
                         Log.w("ModuloAnd", "Sono dentro a exit.");
-                        context.get().setResult(RESULT_OK);
                         context.get().finish();
                         break;
                 }

@@ -41,7 +41,7 @@ public class ConnectionTask extends AsyncTask<Void, Void, Void> {
         ConnectionManager cm = ConnectionManager.getInstance();
         cm.setChannel(socket);
         cm.start();
-        cm.write("connesso\n".getBytes());
+        cm.write("connesso".getBytes());
         Log.i("ModuloAnd Task", "Ho avviato il ConnectionManager.");
 
         return null;
