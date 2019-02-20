@@ -31,7 +31,7 @@ distanza statoDistanza;
 
 //Program setup
 void setup() {
-    Serial.begin(9600);
+  Serial.begin(9600);
   //set PinMode and Serial
   pinMode(LED_1_PIN, OUTPUT);
   pinMode(LED_2_PIN, OUTPUT);

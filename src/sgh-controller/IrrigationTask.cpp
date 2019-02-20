@@ -2,12 +2,12 @@
 #include "Arduino.h"
 #include "globalVars.h"
 
-//define the time between each led switch on. It 's necessary because this task has two different functions inside and the period is the MCD between the two, so we need to set another time.
+//define the max irrigation time in auto mode, and the max time after which the bluetooth will be disconnected
 #define IRRIGATIONTIME 5000
 #define BLUETOOTHTIME 2000
 
 /**
- * Class used to manage the maintenance task, which will allow user to recharge the coffee when it's ended.
+ * Class used to manage the irrigation task.
  */
 IrrigationTask::IrrigationTask(int pin0, int pin1, int pin2, int pinServo, int tx, int rx){
   this->pin[0] = pin0;    
@@ -39,37 +39,26 @@ void IrrigationTask::tick(){
 
   //setting iniziale dello stato. Solamente se non è già in stato di irrigazione
   if(statoDistanza == VICINO && localState1 != IRRIGATION && msgService->isMsgAvailable()){
-    /*
-     Msg* msg = msgService->receiveMsg();
-     MsgService.sendMsg(msg->getContent());
-     delete msg;
-     */
-     MsgService.sendMsg("RISULTA ANCORA DISPONIBILòE IUN MSG DIO LUPO");
     //controllare se è connesso o meno
     if(lastState != MANUALE){
-      //MsgService.sendMsg("ManIn");
-    }
-    
-    msgService->sendMsg(Msg("@ManIn@"));
+      MsgService.sendMsg("ManIn");
+      msgService->sendMsg(Msg("@ManIn@"));
+    }        
     localState1 = MANUALE;
     lastState = MANUALE;
     lastTimeMsgBluetooth = 0;
   } else if((statoDistanza == LONTANO || lastTimeMsgBluetooth >= BLUETOOTHTIME )&& localState1 != IRRIGATION){
       if(lastState == MANUALE){
-        //MsgService.sendMsg("ManOut");  
-      }
-      
-      msgService->sendMsg(Msg("@ManOut@"));
+        MsgService.sendMsg("ManOut");
+        msgService->sendMsg(Msg("@ManOut@"));
+      }     
       localState1 = AUTOMATICO;
       lastState = AUTOMATICO;
   }
 
   //Buffer cleaning. If you are in another state, and receive a message via serial or bluetooth, it will delete the message, otherwise you would receive it when they they get connected
-
-
   if (localState1 != MANUALE && !(localState1 == IRRIGATION && lastState == MANUALE)) {
       if (msgService->isMsgAvailable()){
-        //MsgService.sendMsg("meesaagio cancellato no problema");
         Msg* msg = msgService->receiveMsg();     
         delete msg;
       }
@@ -86,17 +75,8 @@ void IrrigationTask::tick(){
   //switch on the task state
   switch(localState1){
   case WAITING:
-  lastTimeMsgBluetooth = 0;
-  ledMid->switchOff();
-  /*
-    //debug collegamento bluetooth
-    if (msgService->isMsgAvailable()) {
-        Msg* msg = msgService->receiveMsg();
-        if (msg->getContent() == "connesso"){
-            Serial.println("connesso");
-        }
-    }
-    */
+    lastTimeMsgBluetooth = 0;
+    ledMid->switchOff();
     servo.detach();
     break;
    
@@ -130,26 +110,25 @@ void IrrigationTask::tick(){
     led[0]->switchOff();
     led[1]->switchOn();
     ledMid->switchOff();
+    //if no message is available for more than 5s, we suppose bluetooth it's not connected anymore.
     if (msgService->isMsgAvailable() <= 0){
-       //MsgService.sendMsg("Non disponibile skere");
         lastTimeMsgBluetooth += myPeriod;
         if(lastTimeMsgBluetooth >= BLUETOOTHTIME){
             localState1 = WAITING;
         }
      }
+    //if a message is available, we make a different action depending on what message we receive.
     if (msgService->isMsgAvailable() > 0) {
-    lastTimeMsgBluetooth = 0;
+        lastTimeMsgBluetooth = 0;
         Msg* msg = msgService->receiveMsg();
-        //MsgService.sendMsg("DISPNIBILISSIMO AHAHA");
-        //MsgService.sendMsg("Non disponibile skere");
         if (msg->getContent() == "Accendi"){
             MsgService.sendMsg("Start");
             localState1 = IRRIGATION;
         } else if (msg->getContent() == "3"){
-          MsgService.sendMsg("portata 3");
+            MsgService.sendMsg("portata 3");
             portataManuale = 10;
         } else if (msg->getContent() == "4"){
-          MsgService.sendMsg("portata 4");
+            MsgService.sendMsg("portata 4");
             portataManuale = 80;
         } else if (msg->getContent() == "5"){
           MsgService.sendMsg("portata 5");
@@ -160,15 +139,18 @@ void IrrigationTask::tick(){
     break;
      
   case IRRIGATION:   
-    servo.attach(servoPin);     
+    servo.attach(servoPin);
+    //if it's automatic irrigation     
     if(lastState == AUTOMATICO){
       ledMid->setIntensity(portataAutomatica);
       servo.write(1500);
       lastTime += myPeriod;
+      //if t5he max irrigation time ended
       if(lastTime >= IRRIGATIONTIME){
         MsgService.sendMsg("StopT");
         localState1 = WAITING;
       }
+      //check if explicit asking for stop
       if (MsgService.isMsgAvailable()) {
         Msg* msg = MsgService.receiveMsg();    
         if (msg->getContent() == "Stop"){
@@ -177,14 +159,14 @@ void IrrigationTask::tick(){
         }
         delete msg;
       } 
-    } else if(lastState == MANUALE){   
+    } else if(lastState == MANUALE){    //if it's manual irrigation   
       ledMid->setIntensity(portataManuale);
       servo.write(1500);
-      //ipotizzando che l'APP invii sempre in loop dei valori.
+      //if the person is too far while irrigating, goes back to automatic.
       if (statoDistanza == LONTANO) {
-          MsgService.sendMsg("Stop perchè lontano");
           localState1 = WAITING;
       }
+       //if no message is available for more than 5s, we suppose bluetooth it's not connected anymore.
        if (msgService->isMsgAvailable() <= 0){
           lastTimeMsgBluetooth += myPeriod;
           if(lastTimeMsgBluetooth >= BLUETOOTHTIME){
@@ -192,6 +174,7 @@ void IrrigationTask::tick(){
               localState1 = WAITING;
           }
        }
+      //if a message is available while irrigating, check if it's Stop.
       if (msgService->isMsgAvailable() > 0) {
       lastTimeMsgBluetooth = 0;
           Msg* msg = msgService->receiveMsg();
