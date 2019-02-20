@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="50dp"
+        android:layout_weight="1"
+        android:text="Smart Green House"
+        android:textAlignment="center"
+        android:textSize="40sp" />
+
+    <Button
+        android:id="@+id/connectBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Connetti alla Serra"
+        style="@style/Widget.AppCompat.Button.Colored"/>
+
+    <TextView
+        android:id="@+id/statusLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:layout_weight="1"
+        android:text="Status : not connected" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="274dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:max="3"
+            android:progress="1"
+            />
+
+        <Button
+            android:id="@+id/sendBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Modifica portata"
+            style="@style/Widget.AppCompat.Button.Colored"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Debug" />
+
+    <TextView
+        android:id="@+id/chatLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/btn_ON"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Accendi Pompa" />
+
+    <Button
+        android:id="@+id/btn_OFF"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Spegni Pompa" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Umidita" />
+
+    <TextView
+        android:id="@+id/tv_umidita"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+</LinearLayout>

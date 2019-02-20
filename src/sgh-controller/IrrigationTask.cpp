@@ -35,19 +35,14 @@ void IrrigationTask::init(int period){
 }
   
 
-void IrrigationTask::tick(){
-   /*debug android */
-
-   /*   */   
-        
-      
+void IrrigationTask::tick(){ 
 
   //setting iniziale dello stato. Solamente se non è già in stato di irrigazione
   if(statoDistanza == VICINO && localState1 != IRRIGATION && msgService->isMsgAvailable()){
     //controllare se è connesso o meno
     if(lastState != MANUALE){
       MsgService.sendMsg("ManIn");
-      msgService->sendMsg(Msg("@ManIn@"));
+      msgService->sendMsg(Msg("ManIn"));
     }        
     localState1 = MANUALE;
     lastState = MANUALE;
@@ -55,7 +50,7 @@ void IrrigationTask::tick(){
   } else if((statoDistanza == LONTANO || lastTimeMsgBluetooth >= BLUETOOTHTIME )&& localState1 != IRRIGATION){
       if(lastState == MANUALE){
         MsgService.sendMsg("ManOut");
-        msgService->sendMsg(Msg("@ManOut@"));
+        msgService->sendMsg(Msg("ManOut"));
       }     
       localState1 = AUTOMATICO;
       lastState = AUTOMATICO;
