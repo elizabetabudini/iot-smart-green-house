@@ -24,12 +24,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry excluding="java/" kind="src" path="src/main"/>
-	<classpathentry kind="lib" path="F:/File Università/ANNO 3/SEIO/LAB/Repo prof/seiot1819/java/lib/jackson-annotations-2.9.7.jar"/>
-	<classpathentry kind="lib" path="F:/File Università/ANNO 3/SEIO/LAB/Repo prof/seiot1819/java/lib/jackson-core-2.9.7.jar"/>
-	<classpathentry kind="lib" path="F:/File Università/ANNO 3/SEIO/LAB/Repo prof/seiot1819/java/lib/jackson-databind-2.9.7.jar"/>
-	<classpathentry kind="lib" path="F:/File Università/ANNO 3/SEIO/LAB/Repo prof/seiot1819/java/lib/netty-all-4.1.31.Final.jar"/>
-	<classpathentry kind="lib" path="F:/File Università/ANNO 3/SEIO/LAB/Repo prof/seiot1819/java/lib/vertx-core-3.5.4.jar"/>
-	<classpathentry kind="lib" path="F:/File Università/ANNO 3/SEIO/LAB/Repo prof/seiot1819/java/lib/vertx-web-3.5.4.jar"/>
-	<classpathentry kind="lib" path="F:/File Università/ANNO 3/SEIO/LAB/Repo prof/seiot1819/java/lib/vertx-web-client-3.5.4.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

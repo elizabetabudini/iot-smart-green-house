@@ -13,8 +13,8 @@ public class TestClient extends AbstractVerticle {
 
 		Vertx vertx = Vertx.vertx();
 		HttpClient client = vertx.createHttpClient();
-		int u = 25;
-		JsonObject item = new JsonObject().put("umidita", u);
+		int um = 40;
+		JsonObject item = new JsonObject().put("umidita", um);
 		
 		client.post(port, host, "/api/data", response -> {
 			System.out.println("Received response with status code " + response.statusCode());

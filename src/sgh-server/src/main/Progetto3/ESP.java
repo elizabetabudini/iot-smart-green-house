@@ -1,6 +1,6 @@
 package Progetto3;
 public class ESP extends Observable{
-	private enum State{REGULAR,IRRIGATION};
+	private enum State{REGULAR,IRRIGATION,MANUALE};
 	private State state;
 	private final int Umin = 30;
 	private final int delta = 5;
@@ -10,23 +10,37 @@ public class ESP extends Observable{
 	}
 	
 	public void checkMin(int U) {
+		log("CHECKING VALUE");
 		switch(state) {
 		case REGULAR:
 			if(U < Umin) {
 				this.notifyEvent(new AlarmPump(U));
 				state = State.IRRIGATION;
+				log("VALUE UNDER MINIMUM LEVEL");
 			}
 			break;
 		case IRRIGATION:
 			if(U > (Umin+delta)) {
 				this.notifyEvent(new DonePump());
 				state = State.REGULAR;
+				log("VALUE OK");
 			}
+			break;
+		case MANUALE:
 			break;
 		}
 	}
 	
-	public void Overtime() {
-		this.state = state.REGULAR;
+	public void setRegular() {
+		this.state = State.REGULAR;
+	}
+	
+	public void setManual() {
+		this.state = State.MANUALE;
+	}
+	
+	
+	private void log(String msg) {
+		System.out.println("[ESP] "+msg);
 	}
 }

@@ -13,6 +13,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,9 +24,11 @@ public class DataService extends AbstractVerticle{
 
 	private int port;
 	private ESP esp;
-	public DataService(int port,ESP esp) {		
+	private MsgService postino;
+	public DataService(int port,ESP esp,MsgService postino) {		
 		this.port = port;
 		this.esp = esp;
+		this.postino = postino;
 	}
 
 	@Override
@@ -50,7 +53,9 @@ public class DataService extends AbstractVerticle{
 		} else {
 			if(res.getInteger("umidita") != null) {
 				try {
+					log(res.getInteger("umidita").toString());
 					save(res.getInteger("umidita").toString());
+					postino.sendMsg(res.getInteger("umidita").toString());
 					esp.checkMin(res.getInteger("umidita"));
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -77,8 +82,8 @@ public class DataService extends AbstractVerticle{
 	}
 
 	private void save(String msg) throws IOException {
-		final BufferedWriter bw = new BufferedWriter(new FileWriter(new File("umid.txt"), true));
-        bw.append(msg + "\n");
+		final BufferedWriter bw = new BufferedWriter(new FileWriter(new File("/home/tumore/Documents/umid.txt"), true));
+        bw.append(Instant.now() + " " + msg + "\n");
         bw.close();
 	}
 }

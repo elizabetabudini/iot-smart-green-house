@@ -7,7 +7,7 @@ char* ssidName = "";
 // Password rete wifi 
 char* pwd = "";
 /* Indirizzo IP Ngrok da contattare */ 
-char* address = "http://496ccad1.ngrok.io";
+char* address = "http://68a4bb9e.ngrok.io";
 
 void setup() { 
   Serial.begin(115200);                                
@@ -25,11 +25,10 @@ int sendData(String address, float value, String place){
    http.begin(address + "/api/data");      
    http.addHeader("Content-Type", "application/json");     
    String msg = 
-    String("{ \"value\": ") + String(value) + 
-    ", \"place\": \"" + place +"\" }";
+   String("{\"umidita\":") + String(value) + "}";
    int retCode = http.POST(msg);   
    http.end();  
-      
+   Serial.print(msg);
    // String payload = http.getString();  
    // Serial.println(payload);      
    return retCode;

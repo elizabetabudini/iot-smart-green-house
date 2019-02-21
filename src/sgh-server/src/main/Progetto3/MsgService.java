@@ -35,7 +35,7 @@ public class MsgService extends Observable {
 	
 	public void sendMsg(String msg) {
 		channel.sendMsg(msg);
-		System.out.println("sent "+msg);
+		System.out.println("[MSGSERVICE] sent "+msg);
 	}
 	
 }

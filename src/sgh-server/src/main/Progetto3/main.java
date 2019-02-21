@@ -17,27 +17,21 @@ public class main {
         ESP esp = new ESP();
         ObservablePump pump = new ObservablePump();
         MsgService msgService;
-        
-
-		Vertx vertx = Vertx.vertx();
-		DataService service = new DataService(8080,esp);
 		
-        /*
-         * Mi trovo tutte le porte su cui si trova un Arduino e la apro.
-         */
-        String port = "";
-        Enumeration<?> portIdentifiers = CommPortIdentifier.getPortIdentifiers();
-        while (portIdentifiers.hasMoreElements()) {
-            CommPortIdentifier currPortId = (CommPortIdentifier) portIdentifiers.nextElement();
-            port = currPortId.getName();
-            break;
-        }
+		String port = "/dev/ttyACM0"; /* replace with the name of the serial port */
+		
         msgService = new MsgService(port,9600);
+
+
+	Vertx vertx = Vertx.vertx();
+	DataService service = new DataService(8081,esp,msgService);
+
         gh = new GreenHouse(msgService,pump);
         ghc = new GreenHouseController(msgService,pump,esp);
         
-        gh.start();
         msgService.init();
+        gh.start();
+        ghc.start();
         vertx.deployVerticle(service);
         
         while(true){            

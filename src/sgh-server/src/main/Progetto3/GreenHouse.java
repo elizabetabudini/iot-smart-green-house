@@ -22,9 +22,7 @@ public class GreenHouse extends BasicEventLoopController{
      * @throws IOException
      */
     public GreenHouse(final MsgService monitor,final ObservablePump pump) throws IOException {   	
-    	final BufferedWriter bw = new BufferedWriter(new FileWriter(new File("log.txt"), true));
-        bw.append("[INITIALIZING] \n");
-        bw.close();
+    	save("[INITIALIZING]");
         
         this.pump = pump;
         this.monitor = monitor;
@@ -38,27 +36,17 @@ public class GreenHouse extends BasicEventLoopController{
 		try {
 			if(ev instanceof MsgEvent) {
 				if(((MsgEvent) ev).getMsg().equals("Start")) {
-					final BufferedWriter bw = new BufferedWriter(new FileWriter(new File("log.txt"), true));
-		            bw.append(Instant.now() + " [PUMP START] \n");
-		            bw.close();
+					save("[PUMP START]");
 				} else if(((MsgEvent) ev).getMsg().equals("Stop")) {
-					final BufferedWriter bw = new BufferedWriter(new FileWriter(new File("log.txt"), true));
-		            bw.append(Instant.now() + " [PUMP STOP] \n");
-		            bw.close();
+					save("[PUMP STOP]");
 				} else if(((MsgEvent) ev).getMsg().equals("StopT")) {
-					final BufferedWriter bw = new BufferedWriter(new FileWriter(new File("log.txt"), true));
-		            bw.append(Instant.now() + " [PUMP STOP OVERTIME] \n");
-		            bw.close();
+					save("[PUMP STOP OVERTIME]");
 		            monitor.notifyEvent(new OvertimePump());
 				} else if(((MsgEvent) ev).getMsg().equals("ManIn")) {
-					final BufferedWriter bw = new BufferedWriter(new FileWriter(new File("log.txt"), true));
-		            bw.append(Instant.now() + " [MANUAL MODE START] \n");
-		            bw.close();
+					save("[MANUAL MODE START]");
 		            monitor.notifyEvent(new ManualMode());
 				} else if(((MsgEvent) ev).getMsg().equals("ManOut")) {
-					final BufferedWriter bw = new BufferedWriter(new FileWriter(new File("log.txt"), true));
-		            bw.append(Instant.now() + " [AUTO MODE START] \n");
-		            bw.close();
+		            save("[AUTO MODE START]");
 		            monitor.notifyEvent(new AutoMode());
 				}
 			} else if (ev instanceof StartPump) {
@@ -69,6 +57,12 @@ public class GreenHouse extends BasicEventLoopController{
 		} catch (Exception ex){
 			ex.printStackTrace();
 		}		
+	}
+    
+    private void save(String msg) throws IOException {
+		final BufferedWriter bw = new BufferedWriter(new FileWriter(new File("/home/tumore/Documents/log.txt"), true));
+        bw.append(Instant.now() + " " + msg + "\n");
+        bw.close();
 	}
 
 }
