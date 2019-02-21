@@ -54,14 +54,19 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_OFF).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                btChannel.sendMessage("2");
+                if(btChannel != null){
+                    btChannel.sendMessage("2");
+                }
+
             }
         });
 
         findViewById(R.id.btn_ON).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                btChannel.sendMessage("1");
+                if(btChannel != null){
+                    btChannel.sendMessage("1");
+                }
             }
         });
 
@@ -77,9 +82,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                int portata = seekBar.getProgress()+3;
-                String message = String.valueOf(portata);
-                btChannel.sendMessage(message);
+                if(btChannel != null){
+                    int portata = seekBar.getProgress()+3;
+                    String message = String.valueOf(portata);
+                    btChannel.sendMessage(message);
+                }
             }
         });
     }
