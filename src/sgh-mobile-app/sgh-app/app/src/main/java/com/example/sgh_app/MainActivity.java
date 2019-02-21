@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
     private BluetoothChannel btChannel;
     private SeekBar seekBar;
-
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,10 +65,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
         seekBar = findViewById(R.id.seekBar);
-
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -91,8 +87,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        //new notify().cancel(true);
-        btChannel.close();
+        if(btChannel != null){
+            btChannel.close();
+        }
     }
 
     @Override
@@ -105,18 +102,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d(C.APP_LOG_TAG, "Bluetooth not enabled!");
         }
     }
-    private class notify extends AsyncTask<Void, Void, Void> {
-        protected Void doInBackground(Void... voids) {
-            while (!isCancelled()) {
-                btChannel.sendMessage("6");
-            }
-            return null;
-        }
-        @Override
-        protected void onCancelled() {
-            super.onCancelled();
-        }
-    }
+
 
     private void connectToBTServer() throws BluetoothDeviceNotFound {
         final BluetoothDevice serverDevice = BluetoothUtils.getPairedDeviceByName(C.bluetooth.BT_DEVICE_ACTING_AS_SERVER_NAME);
@@ -154,6 +140,27 @@ public class MainActivity extends AppCompatActivity {
                         C.bluetooth.BT_DEVICE_ACTING_AS_SERVER_NAME));
             }
         }).execute();
+
+        new AsyncTask<Void, Void, Void>(){
+            protected Void doInBackground(Void... voids) {
+                while (!isCancelled()) {
+                    if(btChannel != null){
+                        btChannel.sendMessage("6");
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }
+                return null;
+            }
+            @Override
+            protected void onCancelled() {
+                super.onCancelled();
+            }
+        }.execute();
 
 
     }
