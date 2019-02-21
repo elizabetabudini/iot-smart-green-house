@@ -20,24 +20,17 @@ public class main {
         
 
 		Vertx vertx = Vertx.vertx();
-		DataService service = new DataService(8080,esp);
+		DataService service = new DataService(8081,esp);
 		
-        /*
-         * Mi trovo tutte le porte su cui si trova un Arduino e la apro.
-         */
-        String port = "";
-        Enumeration<?> portIdentifiers = CommPortIdentifier.getPortIdentifiers();
-        while (portIdentifiers.hasMoreElements()) {
-            CommPortIdentifier currPortId = (CommPortIdentifier) portIdentifiers.nextElement();
-            port = currPortId.getName();
-            break;
-        }
+		String port = "/dev/ttyACM0"; /* replace with the name of the serial port */
+		
         msgService = new MsgService(port,9600);
         gh = new GreenHouse(msgService,pump);
         ghc = new GreenHouseController(msgService,pump,esp);
         
-        gh.start();
         msgService.init();
+        gh.start();
+        ghc.start();
         vertx.deployVerticle(service);
         
         while(true){            

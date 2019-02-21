@@ -23,13 +23,15 @@ public class GreenHouseController extends BasicEventLoopController{
 			switch (state){
 			    case MANUAL:
 			      if (ev instanceof AutoMode && state != State.AUTO){
-			        state = State.AUTO; 
+			        state = State.AUTO;
+			        esp.setRegular();
 			        log("AUTO MODE");
 			      }
 			      break;
 			    case AUTO:
 			      if (ev instanceof ManualMode && state != State.MANUAL){
 			        state = State.MANUAL; 
+			        esp.setManual();
 			        log("MANUAL MODE");
 				  } else if (ev instanceof AlarmPump){
 			          pump.setOpen(((AlarmPump) ev).getU());
@@ -39,6 +41,7 @@ public class GreenHouseController extends BasicEventLoopController{
 			          log("Pump Close");
 			      } else if (ev instanceof OvertimePump){
 			    	  pump.overtimeClose();
+			    	  esp.setRegular();
 			          log("Overtime Pump Close");
 			      }
 			      break;
