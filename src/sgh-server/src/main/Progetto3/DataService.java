@@ -24,9 +24,11 @@ public class DataService extends AbstractVerticle{
 
 	private int port;
 	private ESP esp;
-	public DataService(int port,ESP esp) {		
+	private MsgService postino;
+	public DataService(int port,ESP esp,MsgService postino) {		
 		this.port = port;
 		this.esp = esp;
+		this.postino = postino;
 	}
 
 	@Override
@@ -53,6 +55,7 @@ public class DataService extends AbstractVerticle{
 				try {
 					log(res.getInteger("umidita").toString());
 					save(res.getInteger("umidita").toString());
+					postino.sendMsg(res.getInteger("umidita").toString());
 					esp.checkMin(res.getInteger("umidita"));
 				} catch (IOException e) {
 					e.printStackTrace();

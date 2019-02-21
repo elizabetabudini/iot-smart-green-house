@@ -17,14 +17,15 @@ public class main {
         ESP esp = new ESP();
         ObservablePump pump = new ObservablePump();
         MsgService msgService;
-        
-
-		Vertx vertx = Vertx.vertx();
-		DataService service = new DataService(8081,esp);
 		
 		String port = "/dev/ttyACM0"; /* replace with the name of the serial port */
 		
         msgService = new MsgService(port,9600);
+
+
+	Vertx vertx = Vertx.vertx();
+	DataService service = new DataService(8081,esp,msgService);
+
         gh = new GreenHouse(msgService,pump);
         ghc = new GreenHouseController(msgService,pump,esp);
         
