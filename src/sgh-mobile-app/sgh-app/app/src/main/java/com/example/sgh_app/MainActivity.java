@@ -130,6 +130,8 @@ public class MainActivity extends AppCompatActivity {
                         ((TextView) findViewById(R.id.chatLabel)).setText(String.format("> [RECEIVED from %s] %s\n",
                                 btChannel.getRemoteDeviceName(),
                                 receivedMessage));
+                        ((TextView) findViewById(R.id.tv_umidita)).setText((String.format("%s\n",
+                                receivedMessage)));
                     }
 
                     @Override
