@@ -32,6 +32,7 @@ void IrrigationTask::init(int period){
   localState1 = WAITING;
   MsgService.init();
   lastTimeMsgBluetooth = 0;
+  umiditaAttuale = "0";
 }
   
 
@@ -78,6 +79,7 @@ void IrrigationTask::tick(){
     lastTimeMsgBluetooth = 0;
     ledMid->switchOff();
     servo.detach();
+
     break;
    
   case AUTOMATICO:
@@ -100,7 +102,9 @@ void IrrigationTask::tick(){
         MsgService.sendMsg("Start");
         portataAutomatica = 255;
         localState1 = IRRIGATION;
-      } 
+      }  else if (msg->getContent().substring(0,7).equals("Umidita")){
+        umiditaAttuale = msg->getContent().substring(8);  
+      }
       delete msg;
    }
     break;
@@ -112,14 +116,15 @@ void IrrigationTask::tick(){
     ledMid->switchOff();
     //if no message is available for more than 5s, we suppose bluetooth it's not connected anymore.
     if (msgService->isMsgAvailable() <= 0){
-
         lastTimeMsgBluetooth += myPeriod;
         if(lastTimeMsgBluetooth >= BLUETOOTHTIME){
             localState1 = WAITING;
         }
      }
     //if a message is available, we make a different action depending on what message we receive.
-    if (msgService->isMsgAvailable() > 0) {
+    if (msgService->isMsgAvailable() > 0) {  
+          Msg *mess = new Msg(umiditaAttuale);
+          msgService->sendMsg(*mess);      
         lastTimeMsgBluetooth = 0;
         Msg* msg = msgService->receiveMsg();
         if (msg->getContent() == "1"){

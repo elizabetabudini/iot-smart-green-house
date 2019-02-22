@@ -16,7 +16,8 @@
 class IrrigationTask: public Task {
 
   int portataAutomatica;
-  int portataManuale; // 0-1-2 -> min, mid, max
+  String umiditaAttuale;
+  int portataManuale;
   MsgServiceBT * msgService;
   int pin[3];
   int tx;
