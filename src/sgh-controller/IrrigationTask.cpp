@@ -42,16 +42,14 @@ void IrrigationTask::tick(){
   if(statoDistanza == VICINO && localState1 != IRRIGATION && msgService->isMsgAvailable()){
     //controllare se è connesso o meno
     if(lastState != MANUALE){
-      MsgService.sendMsg("ManIn");
-      msgService->sendMsg(Msg("ManIn"));
+      MsgService.sendMsg("ManIn");     
     }        
     localState1 = MANUALE;
     lastState = MANUALE;
     lastTimeMsgBluetooth = 0;
   } else if((statoDistanza == LONTANO || lastTimeMsgBluetooth >= BLUETOOTHTIME )&& localState1 != IRRIGATION){
       if(lastState == MANUALE){
-        MsgService.sendMsg("ManOut");
-        msgService->sendMsg(Msg("ManOut"));
+        MsgService.sendMsg("ManOut");       
       }     
       localState1 = AUTOMATICO;
       lastState = AUTOMATICO;
@@ -64,10 +62,14 @@ void IrrigationTask::tick(){
         delete msg;
       }
   }
-  
+
+  //if you are not in AUTO, you delete the message, but if it's humidity update you update the value
   if (localState1 != AUTOMATICO && !(localState1 == IRRIGATION && lastState == AUTOMATICO)) {
       if (MsgService.isMsgAvailable()){
-        Msg* msg = MsgService.receiveMsg();     
+        Msg* msg = MsgService.receiveMsg();
+        if (msg->getContent().substring(0,7).equals("Umidita")){
+          umiditaAttuale = msg->getContent().substring(8);  
+        } 
         delete msg;
       }
   }
