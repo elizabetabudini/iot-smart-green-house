@@ -9,11 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.SeekBar;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.UUID;
@@ -31,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         btAdapter = BluetoothAdapter.getDefaultAdapter();
 
         if(btAdapter != null && !btAdapter.isEnabled()){
-            startActivityForResult(new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE), C.bluetooth.ENABLE_BT_REQUEST);
+            startActivityForResult(new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE), Utils.bluetooth.ENABLE_BT_REQUEST);
         }
 
         initUI();
@@ -46,11 +42,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(btAdapter != null && !btAdapter.isEnabled()){
-                    startActivityForResult(new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE), C.bluetooth.ENABLE_BT_REQUEST);
+                    startActivityForResult(new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE), Utils.bluetooth.ENABLE_BT_REQUEST);
                 }
                 try {
                     connectToBTServer();
-                    //new notify().execute();
 
                 } catch (BluetoothDeviceNotFound bluetoothDeviceNotFound) {
                     bluetoothDeviceNotFound.printStackTrace();
@@ -108,19 +103,19 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, @Nullable final Intent data) {
-        if(requestCode == C.bluetooth.ENABLE_BT_REQUEST && resultCode == RESULT_OK){
-            Log.d(C.APP_LOG_TAG, "Bluetooth enabled!");
+        if(requestCode == Utils.bluetooth.ENABLE_BT_REQUEST && resultCode == RESULT_OK){
+            Log.d(Utils.APP_LOG_TAG, "Bluetooth enabled!");
         }
 
-        if(requestCode == C.bluetooth.ENABLE_BT_REQUEST && resultCode == RESULT_CANCELED){
-            Log.d(C.APP_LOG_TAG, "Bluetooth not enabled!");
+        if(requestCode == Utils.bluetooth.ENABLE_BT_REQUEST && resultCode == RESULT_CANCELED){
+            Log.d(Utils.APP_LOG_TAG, "Bluetooth not enabled!");
         }
     }
 
 
     private void connectToBTServer() throws BluetoothDeviceNotFound {
-        final BluetoothDevice serverDevice = BluetoothUtils.getPairedDeviceByName(C.bluetooth.BT_DEVICE_ACTING_AS_SERVER_NAME);
-        final UUID uuid = BluetoothUtils.generateUuidFromString(C.bluetooth.BT_SERVER_UUID);
+        final BluetoothDevice serverDevice = BluetoothUtils.getPairedDeviceByName(Utils.bluetooth.BT_DEVICE_ACTING_AS_SERVER_NAME);
+        final UUID uuid = BluetoothUtils.generateUuidFromString(Utils.bluetooth.BT_SERVER_UUID);
 
         AsyncTask<Void, Void, Integer> execute = new ConnectToBluetoothServerTask(serverDevice, uuid, new ConnectionTask.EventListener() {
             @Override
@@ -170,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onConnectionCanceled() {
                 ((TextView) findViewById(R.id.statusLabel)).setText(String.format("Status : unable to connect, device %s not found!",
-                        C.bluetooth.BT_DEVICE_ACTING_AS_SERVER_NAME));
+                        Utils.bluetooth.BT_DEVICE_ACTING_AS_SERVER_NAME));
             }
         }).execute();
 

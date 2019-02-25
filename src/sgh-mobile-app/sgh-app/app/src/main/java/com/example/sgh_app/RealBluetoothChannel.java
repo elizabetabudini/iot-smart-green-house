@@ -41,12 +41,12 @@ public final class RealBluetoothChannel extends BluetoothChannel {
             try {
                 tmpIn = socket.getInputStream();
             } catch (IOException e) {
-                Log.e(C.LIB_TAG, "Error occurred when creating input stream", e);
+                Log.e(Utils.LIB_TAG, "Error occurred when creating input stream", e);
             }
             try {
                 tmpOut = socket.getOutputStream();
             } catch (IOException e) {
-                Log.e(C.LIB_TAG, "Error occurred when creating output stream", e);
+                Log.e(Utils.LIB_TAG, "Error occurred when creating output stream", e);
             }
 
             inputStream = tmpIn;
@@ -76,11 +76,11 @@ public final class RealBluetoothChannel extends BluetoothChannel {
 
                     while ((inputByte = input.readByte()) != 0) {
                         char chr = (char) inputByte;
-                        if(chr != C.message.MESSAGE_TERMINATOR){
+                        if(chr != Utils.message.MESSAGE_TERMINATOR){
                             readbuffer.append(chr);
                         } else {
                             String inputString = readbuffer.toString();
-                            Message receivedMessage = btChannelHandler.obtainMessage(C.channel.MESSSAGE_RECEIVED, inputString.getBytes().length, -1, inputString.getBytes());
+                            Message receivedMessage = btChannelHandler.obtainMessage(Utils.channel.MESSSAGE_RECEIVED, inputString.getBytes().length, -1, inputString.getBytes());
                             receivedMessage.sendToTarget();
 
                             readbuffer = new StringBuffer();
@@ -96,11 +96,11 @@ public final class RealBluetoothChannel extends BluetoothChannel {
         public void write(byte[] bytes) {
             try {
                 byte[] bytesToBeSent = Arrays.copyOf(bytes, bytes.length+1);
-                bytesToBeSent[bytesToBeSent.length -1] = C.message.MESSAGE_TERMINATOR;
+                bytesToBeSent[bytesToBeSent.length -1] = Utils.message.MESSAGE_TERMINATOR;
 
                 outputStream.write(bytesToBeSent);
 
-                Message writtenMsg = btChannelHandler.obtainMessage(C.channel.MESSAGE_SENT, -1, -1, bytes);
+                Message writtenMsg = btChannelHandler.obtainMessage(Utils.channel.MESSAGE_SENT, -1, -1, bytes);
                 writtenMsg.sendToTarget();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -111,7 +111,7 @@ public final class RealBluetoothChannel extends BluetoothChannel {
             try {
                 socket.close();
             } catch (IOException e) {
-                Log.e(C.LIB_TAG, "Could not close the connect socket", e);
+                Log.e(Utils.LIB_TAG, "Could not close the connect socket", e);
             }
         }
     }

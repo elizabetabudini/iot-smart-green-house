@@ -8,19 +8,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="30dp"
+        android:layout_marginBottom="10dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:layout_weight="1"
             android:text="Smart Green House"
             android:textAlignment="center"
-            android:textSize="40sp" />
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/connectBtn"

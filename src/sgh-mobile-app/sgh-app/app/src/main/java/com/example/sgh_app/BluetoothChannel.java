@@ -47,13 +47,13 @@ public abstract class BluetoothChannel implements CommChannel {
         @Override
         public void handleMessage(final Message message) {
 
-            if(message.what == C.channel.MESSSAGE_RECEIVED){
+            if(message.what == Utils.channel.MESSSAGE_RECEIVED){
                 for(Listener l : listeners){
                     l.onMessageReceived(new String((byte[])message.obj));
                 }
             }
 
-            if(message.what == C.channel.MESSAGE_SENT){
+            if(message.what == Utils.channel.MESSAGE_SENT){
                 for(Listener l : listeners){
                     l.onMessageSent(new String((byte[])message.obj));
                 }
