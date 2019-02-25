@@ -126,8 +126,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onConnectionActive(final BluetoothChannel channel) {
 
-                ((TextView) findViewById(R.id.statusLabel)).setText(String.format("> STATO: Connesso alla serra %s",
-                        serverDevice.getName()));
+                ((TextView) findViewById(R.id.statusLabel)).setText("> STATO: Modalità automatica, avvicinati alla serra per utilizzare i comandi");
 
                 findViewById(R.id.connectBtn).setEnabled(false);
                 btChannel = channel;
@@ -138,10 +137,9 @@ public class MainActivity extends AppCompatActivity {
                         if(receivedMessage.equals("ManIn")){
                             ((TextView) findViewById(R.id.statusLabel)).setText("> STATO: Modalità manuale");
                             findViewById(R.id.btn_ON).setEnabled(true);
-                            findViewById(R.id.btn_OFF).setEnabled(true);
                             findViewById(R.id.seekBar).setEnabled(true);
                         } else if(receivedMessage.equals("ManOut")){
-                            ((TextView) findViewById(R.id.statusLabel)).setText("> STATO: Modalità automatica");
+                            ((TextView) findViewById(R.id.statusLabel)).setText("> STATO: Modalità automatica, avvicinati alla serra per utilizzare i comandi");
                             findViewById(R.id.btn_ON).setEnabled(false);
                             findViewById(R.id.btn_OFF).setEnabled(false);
                             findViewById(R.id.seekBar).setEnabled(false);
