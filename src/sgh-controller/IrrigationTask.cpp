@@ -42,14 +42,16 @@ void IrrigationTask::tick(){
   if(statoDistanza == VICINO && localState1 != IRRIGATION && msgService->isMsgAvailable()){
     //controllare se è connesso o meno
     if(lastState != MANUALE){
-      MsgService.sendMsg("ManIn");     
+      MsgService.sendMsg("ManIn");    
+      msgService->sendMsg(Msg("ManIn\n")); 
     }        
     localState1 = MANUALE;
     lastState = MANUALE;
     lastTimeMsgBluetooth = 0;
   } else if((statoDistanza == LONTANO || lastTimeMsgBluetooth >= BLUETOOTHTIME )&& localState1 != IRRIGATION){
       if(lastState == MANUALE){
-        MsgService.sendMsg("ManOut");       
+        MsgService.sendMsg("ManOut"); 
+        msgService->sendMsg(Msg("ManOut\n"));       
       }     
       localState1 = AUTOMATICO;
       lastState = AUTOMATICO;
@@ -94,14 +96,17 @@ void IrrigationTask::tick(){
       Msg* msg = MsgService.receiveMsg();    
       if (msg->getContent() == "Start0"){
         MsgService.sendMsg("Start");
+        msgService->sendMsg(Msg("Start\n")); 
         portataAutomatica = 10;
         localState1 = IRRIGATION;
       } else if (msg->getContent() == "Start1"){
         MsgService.sendMsg("Start");
+        msgService->sendMsg(Msg("Start\n")); 
         portataAutomatica = 80;
         localState1 = IRRIGATION;
       } else if (msg->getContent() == "Start2"){
         MsgService.sendMsg("Start");
+        msgService->sendMsg(Msg("Start\n")); 
         portataAutomatica = 255;
         localState1 = IRRIGATION;
       }  else if (msg->getContent().substring(0,7).equals("Umidita")){
@@ -131,6 +136,7 @@ void IrrigationTask::tick(){
         Msg* msg = msgService->receiveMsg();
         if (msg->getContent() == "1"){
             MsgService.sendMsg("Start");
+            msgService->sendMsg(Msg("Start\n")); 
             localState1 = IRRIGATION;
         } else if (msg->getContent() == "3"){
             //MsgService.sendMsg("portata 3");
@@ -163,6 +169,7 @@ void IrrigationTask::tick(){
         Msg* msg = MsgService.receiveMsg();    
         if (msg->getContent() == "Stop"){
           MsgService.sendMsg("Stop");
+          msgService->sendMsg(Msg("Stop\n"));
           localState1 = WAITING;
         }
         delete msg;
@@ -172,7 +179,8 @@ void IrrigationTask::tick(){
       servo.write(1500);
       //if the person is too far while irrigating, goes back to automatic.
       if (statoDistanza == LONTANO) {
-          MsgService.sendMsg("Stop");
+          MsgService.sendMsg("Stop"); 
+          msgService->sendMsg(Msg("Stop\n"));
           localState1 = WAITING;
       }
        //if no message is available for more than 5s, we suppose bluetooth it's not connected anymore.
@@ -180,6 +188,7 @@ void IrrigationTask::tick(){
           lastTimeMsgBluetooth += myPeriod;
           if(lastTimeMsgBluetooth >= BLUETOOTHTIME){
               MsgService.sendMsg("Stop");
+              msgService->sendMsg(Msg("Stop\n"));
               localState1 = WAITING;
           }
        }
@@ -189,6 +198,7 @@ void IrrigationTask::tick(){
           Msg* msg = msgService->receiveMsg();
           if (msg->getContent() == "2"){
               MsgService.sendMsg("Stop");
+              msgService->sendMsg(Msg("Stop\n"));
               localState1 = WAITING;
           }   
           delete msg;
