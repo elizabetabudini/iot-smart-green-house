@@ -55,7 +55,7 @@ public class DataService extends AbstractVerticle{
 				try {
 					log(res.getInteger("umidita").toString());
 					save(res.getInteger("umidita").toString());
-					postino.sendMsg(res.getInteger("umidita").toString());
+					postino.sendMsg("Umidita:"+res.getInteger("umidita").toString());
 					esp.checkMin(res.getInteger("umidita"));
 				} catch (IOException e) {
 					e.printStackTrace();
