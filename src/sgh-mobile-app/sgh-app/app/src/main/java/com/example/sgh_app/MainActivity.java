@@ -22,12 +22,13 @@ public class MainActivity extends AppCompatActivity {
 
     private BluetoothChannel btChannel;
     private SeekBar seekBar;
+    private BluetoothAdapter btAdapter;
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
+        btAdapter = BluetoothAdapter.getDefaultAdapter();
 
         if(btAdapter != null && !btAdapter.isEnabled()){
             startActivityForResult(new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE), C.bluetooth.ENABLE_BT_REQUEST);
@@ -38,9 +39,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void initUI() {
         seekBar= findViewById(R.id.seekBar);
+        findViewById(R.id.btn_ON).setEnabled(false);
+        findViewById(R.id.btn_OFF).setEnabled(false);
+        findViewById(R.id.seekBar).setEnabled(false);
         findViewById(R.id.connectBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(btAdapter != null && !btAdapter.isEnabled()){
+                    startActivityForResult(new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE), C.bluetooth.ENABLE_BT_REQUEST);
+                }
                 try {
                     connectToBTServer();
                     //new notify().execute();
@@ -119,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onConnectionActive(final BluetoothChannel channel) {
 
-                ((TextView) findViewById(R.id.statusLabel)).setText(String.format("Status : connected to server on device %s",
+                ((TextView) findViewById(R.id.statusLabel)).setText(String.format("> STATO: Connesso alla serra %s",
                         serverDevice.getName()));
 
                 findViewById(R.id.connectBtn).setEnabled(false);
@@ -127,18 +134,37 @@ public class MainActivity extends AppCompatActivity {
                 btChannel.registerListener(new RealBluetoothChannel.Listener() {
                     @Override
                     public void onMessageReceived(String receivedMessage) {
-                        ((TextView) findViewById(R.id.chatLabel)).setText(String.format("> [RECEIVED from %s] %s\n",
-                                btChannel.getRemoteDeviceName(),
-                                receivedMessage));
-                        ((TextView) findViewById(R.id.tv_umidita)).setText((String.format("%s\n",
-                                receivedMessage)));
+
+                        if(receivedMessage.equals("ManIn")){
+                            ((TextView) findViewById(R.id.statusLabel)).setText("> STATO: Modalità manuale");
+                            findViewById(R.id.btn_ON).setEnabled(true);
+                            findViewById(R.id.btn_OFF).setEnabled(true);
+                            findViewById(R.id.seekBar).setEnabled(true);
+                        } else if(receivedMessage.equals("ManOut")){
+                            ((TextView) findViewById(R.id.statusLabel)).setText("> STATO: Modalità automatica");
+                            findViewById(R.id.btn_ON).setEnabled(false);
+                            findViewById(R.id.btn_OFF).setEnabled(false);
+                            findViewById(R.id.seekBar).setEnabled(false);
+
+                        } else if(receivedMessage.equals("Start")){
+                            ((TextView) findViewById(R.id.statusLabel)).setText("> STATO: Irrigando");
+                            findViewById(R.id.btn_ON).setEnabled(false);
+                            findViewById(R.id.btn_OFF).setEnabled(true);
+                            findViewById(R.id.seekBar).setEnabled(false);
+                        } else if(receivedMessage.equals("Stop")){
+                            ((TextView) findViewById(R.id.statusLabel)).setText("> STATO: Terminato irrigazione");
+                            findViewById(R.id.btn_ON).setEnabled(true);
+                            findViewById(R.id.btn_OFF).setEnabled(false);
+                            findViewById(R.id.seekBar).setEnabled(true);
+                        } else{
+                            ((TextView) findViewById(R.id.chatLabel)).setText((String.format("> UMIDITA: percepita in real-time %s",
+                                    receivedMessage)));
+                            ((TextView) findViewById(R.id.chatLabel)).append("%");
+                        }
                     }
 
                     @Override
                     public void onMessageSent(String sentMessage) {
-                        ((TextView) findViewById(R.id.chatLabel)).setText(String.format("> [SENT to %s] %s\n",
-                                btChannel.getRemoteDeviceName(),
-                                sentMessage));
                     }
                 });
             }
