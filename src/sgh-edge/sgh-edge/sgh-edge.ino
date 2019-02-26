@@ -4,11 +4,11 @@
 #define POTENTIOMETER_PIN A0
 
 // Nome rete wifi
-char* ssidName = "";
+char* ssidName = "FRITZ!Box 7530 YO";
 // Password rete wifi 
-char* pwd = "";
+char* pwd = "23243994493263098385";
 /* Indirizzo IP Ngrok da contattare */ 
-char* address = "http://68a4bb9e.ngrok.io";
+char* address = "http://5b76438d.ngrok.io";
 Potenziometro *potenziometro;
 
 void setup() { 
@@ -19,7 +19,7 @@ void setup() {
     delay(500);
     Serial.print(".");
   } 
-  Serial.println("Connected: \n local IP: "+WiFi.localIP());
+  Serial.print("Connected: \n local IP: "+WiFi.localIP());
   potenziometro = new Potenziometro("A0");
 }
 
