@@ -12,7 +12,7 @@ public class Utils {
     }
 
     public class channel {
-        public static final int MESSSAGE_RECEIVED = 0;
+        public static final int MESSAGE_RECEIVED = 0;
         public static final int MESSAGE_SENT = 1;
     }
 

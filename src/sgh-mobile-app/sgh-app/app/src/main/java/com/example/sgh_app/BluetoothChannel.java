@@ -47,7 +47,7 @@ public abstract class BluetoothChannel implements CommChannel {
         @Override
         public void handleMessage(final Message message) {
 
-            if(message.what == Utils.channel.MESSSAGE_RECEIVED){
+            if(message.what == Utils.channel.MESSAGE_RECEIVED){
                 for(Listener l : listeners){
                     l.onMessageReceived(new String((byte[])message.obj));
                 }

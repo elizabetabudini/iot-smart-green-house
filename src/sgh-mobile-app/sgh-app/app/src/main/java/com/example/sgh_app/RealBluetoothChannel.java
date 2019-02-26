@@ -80,7 +80,7 @@ public final class RealBluetoothChannel extends BluetoothChannel {
                             readbuffer.append(chr);
                         } else {
                             String inputString = readbuffer.toString();
-                            Message receivedMessage = btChannelHandler.obtainMessage(Utils.channel.MESSSAGE_RECEIVED, inputString.getBytes().length, -1, inputString.getBytes());
+                            Message receivedMessage = btChannelHandler.obtainMessage(Utils.channel.MESSAGE_RECEIVED, inputString.getBytes().length, -1, inputString.getBytes());
                             receivedMessage.sendToTarget();
 
                             readbuffer = new StringBuffer();
