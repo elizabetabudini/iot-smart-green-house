@@ -1,5 +1,6 @@
 #include <ESP8266HTTPClient.h>
 #include <ESP8266WiFi.h>
+#include "Potenziometro.h"
 #define POTENTIOMETER_PIN A0
 
 // Nome rete wifi
@@ -8,6 +9,7 @@ char* ssidName = "";
 char* pwd = "";
 /* Indirizzo IP Ngrok da contattare */ 
 char* address = "http://68a4bb9e.ngrok.io";
+Potenziometro *potenziometro;
 
 void setup() { 
   Serial.begin(115200);                                
@@ -18,14 +20,15 @@ void setup() {
     Serial.print(".");
   } 
   Serial.println("Connected: \n local IP: "+WiFi.localIP());
+  potenziometro = new Potenziometro("A0");
 }
 
-int sendData(String address, float value, String place){  
+int sendData(String address, float value){  
    HTTPClient http;    
    http.begin(address + "/api/data");      
    http.addHeader("Content-Type", "application/json");     
    String msg = 
-   String("{\"umidita\":") + String(value) + "}";
+   String("{\"Umidita\":") + String(value) + "}";
    int retCode = http.POST(msg);   
    http.end();  
    Serial.print(msg);
@@ -38,11 +41,11 @@ void loop() {
  if (WiFi.status()== WL_CONNECTED){   
 
    /* Legge il potenziomentro. Verrà letto un valore da 0 a 1023 */
-   float value = (float) analogRead(POTENTIOMETER_PIN);
+   int value =  potenziometro->getValue();
    
    /* send data */
    Serial.print("sending "+String(value)+"...");    
-   int code = sendData(address, value, "home");
+   int code = sendData(address, value);
 
    /* log result */
    if (code == 200){
