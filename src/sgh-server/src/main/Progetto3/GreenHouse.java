@@ -22,7 +22,7 @@ public class GreenHouse extends BasicEventLoopController{
      * @throws IOException
      */
     public GreenHouse(final MsgService monitor,final ObservablePump pump) throws IOException {   	
-    	save("[INITIALIZING]");
+    	save("[ACCENSIONE]");
         
         this.pump = pump;
         this.monitor = monitor;
@@ -36,17 +36,17 @@ public class GreenHouse extends BasicEventLoopController{
 		try {
 			if(ev instanceof MsgEvent) {
 				if(((MsgEvent) ev).getMsg().equals("Start")) {
-					save("[PUMP START]");
+					save("[POMPA APERTA]");
 				} else if(((MsgEvent) ev).getMsg().equals("Stop")) {
-					save("[PUMP STOP]");
+					save("[POMPA CHIUSA]");
 				} else if(((MsgEvent) ev).getMsg().equals("StopT")) {
-					save("[PUMP STOP OVERTIME]");
+					save("[POMPA CHIUSA PER OVERTIME]");
 		            monitor.notifyEvent(new OvertimePump());
 				} else if(((MsgEvent) ev).getMsg().equals("ManIn")) {
-					save("[MANUAL MODE START]");
+					save("[MODALITA MANUALE]");
 		            monitor.notifyEvent(new ManualMode());
 				} else if(((MsgEvent) ev).getMsg().equals("ManOut")) {
-		            save("[AUTO MODE START]");
+		            save("[MODALITA AUTOMATICA]");
 		            monitor.notifyEvent(new AutoMode());
 				}
 			} else if (ev instanceof StartPump) {
