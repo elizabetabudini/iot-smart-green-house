@@ -1,6 +1,6 @@
 package com.example.sgh_app;
 
-public class C {
+public class Utils {
 
     public static final String APP_LOG_TAG = "BT CLN";
     public static final String LIB_TAG = "BluetoothLib";
@@ -12,7 +12,7 @@ public class C {
     }
 
     public class channel {
-        public static final int MESSSAGE_RECEIVED = 0;
+        public static final int MESSAGE_RECEIVED = 0;
         public static final int MESSAGE_SENT = 1;
     }
 
@@ -20,8 +20,4 @@ public class C {
         public static final char MESSAGE_TERMINATOR = '\n';
     }
 
-    public class emulator {
-        public static final String HOST_IP = "10.0.2.2";
-        public static final int HOST_PORT = 8080;
-    }
 }
