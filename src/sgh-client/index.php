@@ -1,10 +1,91 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <title>Smart Door</title>
+  <title>GreenHouse</title>
   <link rel="stylesheet" type="text/css" href="assets\bootstrap-3.3.7-dist\css\bootstrap.min.css" media="screen" />
   <link rel="stylesheet" type="text/css" href="assets/css/main.css" media="screen" />
-  <meta http-equiv="refresh" content="1;URL='index.php'">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<!-- Notification script -->
+    <script type="text/javascript">
+    	$(document).ready(function(){
+			var lastpump;
+			var lastum;
+			
+		   $.ajax({
+              type:'POST',
+              url:'getPump.php',
+              dataType: 'json',
+              data: {
+				last : lastpump
+			  }
+            })
+              .done(function(response){
+                if(response.b != "0"){
+					lastpump = response.b;
+					$('#Pump').append($(response.a));
+                } else {
+                	alert("Errore");
+                }
+              });
+              
+            $.ajax({
+              type:'POST',
+              url:'getUm.php',
+              dataType: 'json',
+              data: {
+				last : lastum
+			  }
+		  })
+            .done(function(response){
+				if(response.b != "0"){
+					lastum = response.b;
+					$('#Um').append($(response.a));
+                } else {
+                	alert("Errore");
+                }
+            });
+		   
+		   function refresh(){
+				 $.ajax({
+				  type:'POST',
+				  url:'getPump.php',
+				  dataType: 'json',
+				  data: {
+					last : lastpump
+				  }
+				})
+				.done(function(response){
+					if(response.b != "0"){			
+						lastpump = response.b;
+						$('#Pump').append($(response.a));
+					} else {
+						alert("Errore");
+					}
+					});
+				
+				$.ajax({
+				  type:'POST',
+				  url:'getUm.php',
+				  dataType: 'json',         
+				  data: {
+					last : lastum
+				  }
+				})
+				.done(function(response){
+					if(response.b != "0"){
+						lastum = response.b;
+						$('#Um').append($(response.a));
+					} else {
+						alert("Errore");
+					}
+				});
+			}  
+            window.setInterval(refresh, 5000);
+		});
+	</script>
 </head>
 <body>
   <header>
@@ -25,24 +106,22 @@
     </div>
     <div class="row">
       <div class="col-lg">    		     
-        <p>
-          <?php
-            $open=fopen("log.txt","r");
-            $testo=fread($open,filesize("log.txt"));
-            fclose($open);
-
-            echo(nl2br($testo));
-  	      ?>	    
-        </p>
-        <p>
-			<?php
-            $open=fopen("umid.txt","r");
-            $testo=fread($open,filesize("umid.txt"));
-            fclose($open);
-
-            echo(nl2br($testo));
-  	      ?>
-        </p>
+        <table id="Pump" class="table table-striped">
+			<tr>
+				<th scope="col">Data</th>
+				<th scope="col">Azione</th>
+			</tr>
+        </table>
+      </div>
+      <div class="col-lg">    		     
+        <table id="Um" class="table table-striped">
+			<tr>
+				<th scope="col">Data</th>
+				<th scope="col">Valore %</th>
+			</tr>
+        </table>
       </div>
   </div>
+ 
 </body>
+</html>
