@@ -15,19 +15,22 @@ import java.time.Instant;
 public class GreenHouse extends BasicEventLoopController{
 	private MsgService monitor;
 	private ObservablePump pump;
+	private ESP esp;
 
     /**
      * Costruttore che inizializza il radar allo stato di IDLE.
      * 
      * @throws IOException
      */
-    public GreenHouse(final MsgService monitor,final ObservablePump pump) throws IOException {   	
+    public GreenHouse(final MsgService monitor,final ObservablePump pump,final ESP esp) throws IOException {   	
     	save("[ACCENSIONE]");
         
         this.pump = pump;
         this.monitor = monitor;
+        this.esp = esp;
         monitor.addObserver(this);
         pump.addObserver(this);
+        esp.addObserver(this);
     }
     
     
@@ -53,14 +56,16 @@ public class GreenHouse extends BasicEventLoopController{
 				monitor.sendMsg(((StartPump) ev).getMessage());
 			} else if (ev instanceof StopPump) {
 				monitor.sendMsg("Stop");
-			}
+			}// else if (ev instanceof LogUm) {
+			//	monitor.sendMsg("Umidita:"+((LogUm) ev).getUm());
+			//}
 		} catch (Exception ex){
 			ex.printStackTrace();
 		}		
 	}
     
     private void save(String msg) throws IOException {
-		final BufferedWriter bw = new BufferedWriter(new FileWriter(new File("/home/tumore/Documents/log.txt"), true));
+		final BufferedWriter bw = new BufferedWriter(new FileWriter(new File("/opt/lampp/htdocs/log.txt"), true));
         bw.append(Instant.now() + " " + msg + "\n");
         bw.close();
 	}

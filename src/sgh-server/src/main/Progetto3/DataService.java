@@ -25,10 +25,9 @@ public class DataService extends AbstractVerticle{
 	private int port;
 	private ESP esp;
 	private MsgService postino;
-	public DataService(int port,ESP esp,MsgService postino) {		
+	public DataService(int port,ESP esp) {		
 		this.port = port;
 		this.esp = esp;
-		this.postino = postino;
 	}
 
 	@Override
@@ -55,7 +54,7 @@ public class DataService extends AbstractVerticle{
 				try {
 					log(res.getInteger("umidita").toString());
 					save(res.getInteger("umidita").toString());
-					postino.sendMsg("Umidita:"+res.getInteger("umidita").toString());
+					esp.sendUmMsg(res.getInteger("umidita"));
 					esp.checkMin(res.getInteger("umidita"));
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -82,7 +81,7 @@ public class DataService extends AbstractVerticle{
 	}
 
 	private void save(String msg) throws IOException {
-		final BufferedWriter bw = new BufferedWriter(new FileWriter(new File("/home/tumore/Documents/umid.txt"), true));
+		final BufferedWriter bw = new BufferedWriter(new FileWriter(new File("/opt/lampp/htdocs/umid.txt"), true));
         bw.append(Instant.now() + " " + msg + "\n");
         bw.close();
 	}

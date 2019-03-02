@@ -1,14 +1,11 @@
 package Progetto3;
 import java.io.IOException;
-import java.util.Enumeration;
 
-import gnu.io.CommPortIdentifier;
 import io.vertx.core.Vertx;
 
 public class main {
 
     public main() {
-        // TODO Auto-generated constructor stub
     }
 
     public static void main(String[] args) throws IOException {
@@ -24,9 +21,9 @@ public class main {
 
 
 	Vertx vertx = Vertx.vertx();
-	DataService service = new DataService(8081,esp,msgService);
+	DataService service = new DataService(8081,esp);
 
-        gh = new GreenHouse(msgService,pump);
+        gh = new GreenHouse(msgService,pump,esp);
         ghc = new GreenHouseController(msgService,pump,esp);
         
         msgService.init();

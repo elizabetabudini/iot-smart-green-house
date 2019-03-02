@@ -39,6 +39,9 @@ public class ESP extends Observable{
 		this.state = State.MANUALE;
 	}
 	
+	public void sendUmMsg(int um) {
+		this.notifyEvent(new LogUm(um));
+	}
 	
 	private void log(String msg) {
 		System.out.println("[ESP] "+msg);
