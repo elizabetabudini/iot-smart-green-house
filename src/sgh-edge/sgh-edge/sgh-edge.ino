@@ -4,11 +4,11 @@
 #define POTENTIOMETER_PIN A0
 
 // Nome rete wifi
-char* ssidName = "FRITZ!Box 7530 YO";
+char* ssidName = "FLAVIETTOCAPO1";
 // Password rete wifi 
-char* pwd = "23243994493263098385";
+char* pwd = "soldati98";
 /* Indirizzo IP Ngrok da contattare */ 
-char* address = "http://5b76438d.ngrok.io";
+char* address = "http://99a36b1a.ngrok.io/";
 Potenziometro *potenziometro;
 
 void setup() { 
@@ -28,7 +28,7 @@ int sendData(String address, float value){
    http.begin(address + "/api/data");      
    http.addHeader("Content-Type", "application/json");     
    String msg = 
-   String("{\"Umidita\":") + String(value) + "}";
+   String("{\"umidita\":") + String(value) + "}";
    int retCode = http.POST(msg);   
    http.end();  
    Serial.print(msg);
@@ -57,6 +57,6 @@ void loop() {
    Serial.println("Error in WiFi connection");   
  }
  
- delay(5000);  
+ delay(1000);  
  
 }
