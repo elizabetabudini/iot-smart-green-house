@@ -19,7 +19,7 @@ IrrigationTask::IrrigationTask(int pin0, int pin1, int pin2, int pinServo, int t
   lastTime = 0;
 }
 
-//set the starting state anhd initialize the leds
+//set the starting state anhd initialize sensors and actuators
 void IrrigationTask::init(int period){
   Task::init(period);
   for (int i = 0; i < 2; i++){
@@ -38,9 +38,9 @@ void IrrigationTask::init(int period){
 
 void IrrigationTask::tick(){ 
 
-  //setting iniziale dello stato. Solamente se non è già in stato di irrigazione
+  //Set the task state depending on the distance and bluetooth connection, but only if the task is not in IRRIGATION state (which has its own conditions).
   if(statoDistanza == VICINO && localState1 != IRRIGATION && msgService->isMsgAvailable()){
-    //controllare se è connesso o meno
+    //Send message only if the task enter in MANUAL mode.
     if(lastState != MANUALE){
       MsgService.sendMsg("ManIn");    
       msgService->sendMsg(Msg("ManIn\n")); 
@@ -49,6 +49,7 @@ void IrrigationTask::tick(){
     lastState = MANUALE;
     lastTimeMsgBluetooth = 0;
   } else if((statoDistanza == LONTANO || lastTimeMsgBluetooth >= BLUETOOTHTIME )&& localState1 != IRRIGATION){
+    //Send message only if the task enter in AUTOMATIC mode.
       if(lastState == MANUALE){
         MsgService.sendMsg("ManOut"); 
         msgService->sendMsg(Msg("ManOut\n"));       
@@ -83,7 +84,6 @@ void IrrigationTask::tick(){
     lastTimeMsgBluetooth = 0;
     ledMid->switchOff();
     servo.detach();
-
     break;
    
   case AUTOMATICO:
@@ -92,6 +92,7 @@ void IrrigationTask::tick(){
     led[1]->switchOff();
     ledMid->switchOff();
     lastTime = 0;
+    //depending on the message received, the task update the humidity or start the irrigation.
     if (MsgService.isMsgAvailable()) {
       Msg* msg = MsgService.receiveMsg();    
       if (msg->getContent() == "Start0"){
@@ -128,10 +129,11 @@ void IrrigationTask::tick(){
             localState1 = WAITING;
         }
      }
-    //if a message is available, we make a different action depending on what message we receive.
-    if (msgService->isMsgAvailable() > 0) {  
-          Msg *mess = new Msg(umiditaAttuale);
-          msgService->sendMsg(*mess);      
+    //if a message is available, the task make a different action depending on what message it receive. Also we set to 0 the last message counter.
+    if (msgService->isMsgAvailable() > 0) {
+        //each time a message is available (bluetooth is connected) the task send the humidity to the mobile APP.
+        Msg *mess = new Msg(umiditaAttuale);
+        msgService->sendMsg(*mess);      
         lastTimeMsgBluetooth = 0;
         Msg* msg = msgService->receiveMsg();
         if (msg->getContent() == "1"){

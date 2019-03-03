@@ -23,7 +23,7 @@ void DetectDistanceTask::init(int period){
 void DetectDistanceTask::tick(){
 
 	float distance = sonar->getDistance();
-    //Se si � sucfficientemente vicini si entra nello stato vicino, altrimenti lontano
+    //depending on the distance, the task will be in Near o Far state.
 	if(distance <= DIST){
 		localState1 = NEAR;
 	} else if(distance > DIST){
@@ -33,13 +33,12 @@ void DetectDistanceTask::tick(){
 	
 	//Depending on the global state and on the task state, we make a different action.
 	switch(localState1){
-  //msgService->sendMsg(Msg("BELLO"));
-    //Il case lontano semplicemente setta la variabile globale a true
+    //Far state: setting global distance to LONTANO.
 		case FAR:
 				statoDistanza = LONTANO;
 			break;
       
-      //stato connesso, setto lo stato globale a manuale
+    //Near state: setting global distance to VICINO.
     case NEAR:
       statoDistanza = VICINO;
       break;  		
