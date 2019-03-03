@@ -32,8 +32,6 @@ int sendData(String address, float value){
    int retCode = http.POST(msg);   
    http.end();  
    Serial.print(msg);
-   // String payload = http.getString();  
-   // Serial.println(payload);      
    return retCode;
 }
    
