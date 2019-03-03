@@ -56,9 +56,9 @@ public class GreenHouse extends BasicEventLoopController{
 				monitor.sendMsg(((StartPump) ev).getMessage());
 			} else if (ev instanceof StopPump) {
 				monitor.sendMsg("Stop");
-			}// else if (ev instanceof LogUm) {
-			//	monitor.sendMsg("Umidita:"+((LogUm) ev).getUm());
-			//}
+			} else if (ev instanceof LogUm) {
+				monitor.sendMsg("Umidita:"+((LogUm) ev).getUm());
+			}
 		} catch (Exception ex){
 			ex.printStackTrace();
 		}		

@@ -11,7 +11,7 @@ public class main {
     public static void main(String[] args) throws IOException {
         final GreenHouse gh;
         final GreenHouseController ghc;
-        ESP esp = new ESP();
+        final ESP esp = new ESP();
         ObservablePump pump = new ObservablePump();
         MsgService msgService;
 		

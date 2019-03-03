@@ -24,8 +24,7 @@ public class DataService extends AbstractVerticle{
 
 	private int port;
 	private ESP esp;
-	private MsgService postino;
-	public DataService(int port,ESP esp) {		
+	public DataService(int port,final ESP esp) {		
 		this.port = port;
 		this.esp = esp;
 	}

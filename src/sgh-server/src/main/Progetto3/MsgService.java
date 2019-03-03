@@ -23,9 +23,11 @@ public class MsgService extends Observable {
 		new Thread(() -> {
 			while (true) {
 				try {
-					String msg = channel.receiveMsg();
-					System.out.println("[Received] "+msg);
-					this.notifyEvent(new MsgEvent(msg));
+					if(channel.isMsgAvailable()) {
+						String msg = channel.receiveMsg();
+						System.out.println("[Received] "+msg);
+						this.notifyEvent(new MsgEvent(msg));
+					}
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
@@ -36,6 +38,12 @@ public class MsgService extends Observable {
 	public void sendMsg(String msg) {
 		channel.sendMsg(msg);
 		System.out.println("[MSGSERVICE] sent "+msg);
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }
