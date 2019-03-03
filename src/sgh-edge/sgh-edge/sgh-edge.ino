@@ -4,11 +4,11 @@
 #define POTENTIOMETER_PIN A0
 
 // Nome rete wifi
-char* ssidName = "FLAVIETTOCAPO1";
+char* ssidName = "-ThE_H0Us3-2.4Ghz";
 // Password rete wifi 
-char* pwd = "soldati98";
+char* pwd = "100korwa100";
 /* Indirizzo IP Ngrok da contattare */ 
-char* address = "http://99a36b1a.ngrok.io/";
+char* address = "http://311744a1.ngrok.io";
 Potenziometro *potenziometro;
 
 void setup() { 
